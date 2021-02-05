@@ -3,9 +3,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header bg-success text-white">requisito-component</div>
+                    <div class="card-header bg-success text-white">REQUISITOS</div>
                     <div class="card-body">
-                        aca entran los requisitos.
+                        <h3>holas mmm</h3>
                     </div>
                 </div>
             </div>

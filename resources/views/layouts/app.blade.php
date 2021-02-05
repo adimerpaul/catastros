@@ -33,9 +33,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <router-link
+                        to="/requisitos"
+                        v-slot="{ href, route, navigate, isActive, isExactActive }"
+                    >
                         <li class="nav-item">
-                            <a class="nav-link" href="requisitos">Requisitos</a>
+                            <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                <i class="fa fa-user"></i> Requisiros
+
+                            </a>
                         </li>
+                    </router-link>
+                    <router-link
+                    to="/home"
+                    v-slot="{ href, route, navigate, isActive, isExactActive }"
+                >
+                    <li class="nav-item">
+                        <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                            <i class="fa fa-user"></i> Home
+
+                        </a>
+                    </li>
+                </router-link>
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->

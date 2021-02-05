@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<requisito></requisito>
+{{--<example-component></example-component>--}}
+<component-requisito></component-requisito>
 @endsection

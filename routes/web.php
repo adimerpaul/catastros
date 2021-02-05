@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/requisitos', function () {
-    return view('requisitos');
+    return view('home');
 })->middleware('auth');
 
 Auth::routes();
