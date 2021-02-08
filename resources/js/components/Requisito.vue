@@ -14,40 +14,65 @@
                         <div class="modal fade" id="registrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Registro de Persona</h5>
+                                    <div class="modal-header bg-success text-white">
+                                        <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-plus-circle"></i> Nuevo Tramite</h5>
                                     </div>
                                     <div class="modal-body">
                                         <form @submit.prevent="guardar">                                            
-                                            <div class="form-group row">
-                                                <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.nombre" class="form-control" id="nombre" placeholder="Nombre">
+                                            <div class="form">
+                                                <div class="field-wrapper input">
+                                                    <label for="nombre">Nombre Tramite</label>
+                                                    <!--select name="denuncia" id="denuncia" class="form-control" v-model="requisito.detalles" required>
+                                                        <option value=""> Seleccionar...</option>
+                                                        <option value="1"> Pago Impuestos a la transferencia</option>
+                                                        <option value="2"> Legalizacion de Plano demostrativo</option>
+                                                        <option value="3"> Certificacion general/Informe tecnico</option>
+                                                        <option value="4"> Certificado catastral y Prestamo bancario</option>
+                                                        <option value="5"> Empadronamiento y Cambio de nombre</option>
+                                                        <option value="6"> Recatastracion</option>
+                                                        <option value="7"> Regulacion de impuestos</option>
+                                                        <option value="8"> Tramites de excedencia</option>
+                                                        <option value="9"> Aprobacion de planos de construccion</option>
+                                                        <option value="10"> Linea nivel y Orden de amurallamiento</option>
+                                                        <option value="11"> Aprobacion de plano de fraccionamiento</option>
+                                                        <option value="12"> Aprobacion planos de unificacion</option>
+                                                        <option value="13"> Plano demostrativo individual</option>
+                                                        <option value="14"> Planos de propiedad horizontal</option>
+                                                    </select-->
+                                                    <input type="text" class="form-control">
                                                 </div>
-                                                <label for="apellidos" class="col-sm-3 col-form-label">Apellidos</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.apellidos" class="form-control" id="apellidos" placeholder="Apellidos">
-                                                </div>
-                                                <label for="ci" class="col-sm-3 col-form-label">CI</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.ci" class="form-control" id="ci" placeholder="CI">
-                                                </div>
-                                                <label for="celular" class="col-sm-3 col-form-label">Celular</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.celular" class="form-control" id="celular" placeholder="Celular">
-                                                </div>
-                                                <label for="direccion" class="col-sm-3 col-form-label">Direccion</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.direccion" class="form-control" id="direccion" placeholder="Direccion">
-                                                </div>
-                                                <label for="objetivo" class="col-sm-3 col-form-label">Objetivo</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.objetivo" class="form-control" id="objetivo" placeholder="Objetivo">
-                                                </div>
-                                                <label for="codDetalle" class="col-sm-3 col-form-label">Cod Detalle</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.codDetalle" class="form-control" id="codDetalle" placeholder="Codigo Detalle">
-                                                </div>
+                                                <div class="form-group">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <td>N</td>
+                                                            <td>Documento</td>
+                                                            <td>Opciones</td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr v-for="(item,index) in requisito.detalles" :key="index">
+                                                            <td>
+                                                                {{index+1}}
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" v-model="item.nombre" style="padding: 0;margin: 0;border: 1px solid black">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" v-model="item.unidad" style="padding: 0;margin: 0;border: 1px solid black">
+                                                            </td>
+                                                            <td>
+                                                                <button type="button" @click="mas" class="btn btn-success btn-sm" style="padding: 0px">
+                                                                    +
+                                                                </button>
+                                                                <button v-if="index!=0" type="button" @click="menos(index)" class="btn btn-danger btn-sm" style="padding: 0px">
+                                                                    -
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>                                             
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
@@ -71,30 +96,11 @@
                                                 <div class="col-sm-8">
                                                 <input type="text" v-model="requisito.nombre" class="form-control" id="nombre">
                                                 </div>
-                                                <label for="apellidos" class="col-sm-3 col-form-label">Apellidos</label>
+                                                <label for="detalles" class="col-sm-3 col-form-label">Detalles</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.apellidos" class="form-control" id="apellidos">
+                                                <input type="text" v-model="requisito.detalles" class="form-control" id="detalles">
                                                 </div>
-                                                <label for="ci" class="col-sm-3 col-form-label">CI</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.ci" class="form-control" id="ci">
-                                                </div>
-                                                <label for="celular" class="col-sm-3 col-form-label">Celular</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.celular" class="form-control" id="celular">
-                                                </div>
-                                                <label for="direccion" class="col-sm-3 col-form-label">Direccion</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.direccion" class="form-control" id="direccion">
-                                                </div>
-                                                <label for="objetivo" class="col-sm-3 col-form-label">Objetivo</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.objetivo" class="form-control" id="objetivo">
-                                                </div>
-                                                <label for="codDetalle" class="col-sm-3 col-form-label">Cod Detalle</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.codDetalle" class="form-control" id="codDetalle">
-                                                </div>
+                                                
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
@@ -110,28 +116,17 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
-                                    <th>Apellidos</th>
-                                    <th>CI</th>
-                                    <th>Celular</th>
-                                    <th>Direccion</th>
-                                    <th>Objetivo</th>
-                                    <th>CodDetalle</th>
+                                    <th>Documentos</th>                                    
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(i,index) in requisitos" :key="index">
-                                    <td>{{index+1}}</td>
-                                    <td>{{i.nombre}}</td>
-                                    <td>{{i.apellidos}}</td>
-                                    <td>{{i.ci}}</td>
-                                    <td>{{i.celular}}</td>
-                                    <td>{{i.direccion}}</td>
-                                    <td>{{i.objetivo}}</td>
-                                    <td>{{i.codDetalle}}</td>
+                                <tr v-for="(i,index) in requisito.detalles" :key="index">
+                                    <th scope="row">{{index+1}}</th>
+                                    <td><input type="text" class="form-control" :name="i.nombre" v-model="i.nombre"></td>
                                     <td>
-                                        <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
+                                        <div @click="mas"  class="btn btn-success btn-sm"><i class="fa fa-plus"></i></div>
+                                        <div @click="menos(index)" v-if="index!=0" class="btn btn-danger btn-sm"><i class="fa fa-minus"></i></div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -148,7 +143,8 @@
     export default {
         data(){
             return {
-                requisito:{},
+                requisito:{detalles:[{nombre:''}]},
+                                //dato:{hijos:[{nombres:'',apellidos:''}]},
                 requisitos:[]
             }
         },
@@ -160,6 +156,12 @@
             //}
         },
         methods:{
+            mas(){
+                this.requisito.detalles.push({nombres:'',apellidos:''});
+            },
+            menos(index){
+                this.requisito.detalles.splice(index, 1);
+            },
             guardar(){
                 axios.post('/requisito',this.requisito).then(res=>{
                     $('#registrar').modal('hide');

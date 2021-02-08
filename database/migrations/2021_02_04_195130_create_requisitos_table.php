@@ -16,12 +16,7 @@ class CreateRequisitosTable extends Migration
         Schema::create('requisitos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('ci');
-            $table->string('celular');
-            $table->string('direccion');
-            $table->string('objetivo');
-            $table->string('codDetalle');
+            $table->string('detalles')->nullable();
             $table->timestamps();
         });
     }

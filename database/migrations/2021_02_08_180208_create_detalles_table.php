@@ -15,12 +15,9 @@ class CreateDetallesTable extends Migration
     {
         Schema::create('detalles', function (Blueprint $table) {
             $table->id();
-            $table->string('codDetalle');
-            $table->string('nroDoc');
-            $table->string('descripcion');
-            $table->string('localizacion');
-            $table->string('usuario');
-            $table->string('idDocumento');
+            $table->string('nombre');
+            $table->unsignedBigInteger('requisito_id');
+            $table->foreign('requisito_id')->references('id')->on('requisitos');
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ class DetalleController extends Controller
      */
     public function index()
     {
-        return Detalle::all();
+        //
     }
 
     /**
@@ -35,14 +35,7 @@ class DetalleController extends Controller
      */
     public function store(Request $request)
     {
-        $d=new Detalle();
-        $d->codDetalle=$request->codDetalle;
-        $d->nroDoc=$request->nroDoc;
-        $d->descripcion=$request->descripcion;
-        $d->localizacion=$request->localizacion;
-        $d->usuario=$request->usuario;
-        $d->idDocumento=$request->idDocumento;
-        $d->save();
+        //
     }
 
     /**
@@ -74,16 +67,9 @@ class DetalleController extends Controller
      * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Detalle $detalle)
     {
-        $d=Detalle::find($id);
-        $d->codDetalle=$request->codDetalle;
-        $d->nroDoc=$request->nroDoc;
-        $d->descripcion=$request->descripcion;
-        $d->localizacion=$request->localizacion;
-        $d->usuario=$request->usuario;
-        $d->idDocumento=$request->idDocumento;
-        $d->save();
+        //
     }
 
     /**
@@ -92,9 +78,8 @@ class DetalleController extends Controller
      * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Detalle $detalle)
     {
-        $d=Detalle::find($id);
-        $d->delete();
+        //
     }
 }

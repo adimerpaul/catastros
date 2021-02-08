@@ -52,23 +52,10 @@
 
                         <router-link
                             to="/requisitos"
-                            v-slot="{ href, route, navigate, isActive, isExactActive }"
-                        >
+                            v-slot="{ href, route, navigate, isActive, isExactActive }">
                             <li class="nav-item">
                                 <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="far fa-clipboard"></i> Requisitos
-
-                                </a>
-                            </li>
-                        </router-link>
-
-                        <router-link
-                            to="/detalles"
-                            v-slot="{ href, route, navigate, isActive, isExactActive }"
-                        >
-                            <li class="nav-item">
-                                <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="fa fa-info"></i> Detalles
+                                    <i class="fa fa-clipboard"></i> Requisitos
 
                                 </a>
                             </li>
