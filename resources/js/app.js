@@ -7,11 +7,13 @@ Vue.use(VueRouter)
 
 import honme from './components/ExampleComponent';
 import requisitos from './components/Requisito';
+import detalles from './components/Detalle';
 
 
 const routes = [
     { path: '/home', component: honme },
-    { path: '/requisitos', component: requisitos }
+    { path: '/requisitos', component: requisitos },
+    { path: '/detalles', component: detalles }
 ]
 const router = new VueRouter({
     mode: 'history',

@@ -16,8 +16,12 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
@@ -33,28 +37,42 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
+                 
                         <router-link
-                        to="/requisitos"
-                        v-slot="{ href, route, navigate, isActive, isExactActive }"
-                    >
-                        <li class="nav-item">
-                            <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                <i class="fa fa-user"></i> Requisiros
+                            to="/home"
+                            v-slot="{ href, route, navigate, isActive, isExactActive }"
+                        >
+                            <li class="nav-item">
+                                <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                    <i class="fas fa-home"></i> Home
 
-                            </a>
-                        </li>
-                    </router-link>
-                    <router-link
-                    to="/home"
-                    v-slot="{ href, route, navigate, isActive, isExactActive }"
-                >
-                    <li class="nav-item">
-                        <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                            <i class="fa fa-user"></i> Home
+                                </a>
+                            </li>
+                        </router-link>
 
-                        </a>
-                    </li>
-                </router-link>
+                        <router-link
+                            to="/requisitos"
+                            v-slot="{ href, route, navigate, isActive, isExactActive }"
+                        >
+                            <li class="nav-item">
+                                <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                    <i class="far fa-clipboard"></i> Requisitos
+
+                                </a>
+                            </li>
+                        </router-link>
+
+                        <router-link
+                            to="/detalles"
+                            v-slot="{ href, route, navigate, isActive, isExactActive }"
+                        >
+                            <li class="nav-item">
+                                <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                    <i class="fa fa-info"></i> Detalles
+
+                                </a>
+                            </li>
+                        </router-link>
 
                     </ul>
 

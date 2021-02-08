@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Requisito;
+use App\Models\Detalle;
 use Illuminate\Http\Request;
 
-class RequisitoController extends Controller
+class DetalleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class RequisitoController extends Controller
      */
     public function index()
     {
-        return Requisito::all();
+        return Detalle::all();
     }
 
     /**
@@ -35,24 +35,23 @@ class RequisitoController extends Controller
      */
     public function store(Request $request)
     {
-        $d=new Requisito();
-        $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
-        $d->ci=$request->ci;
-        $d->celular=$request->celular;
-        $d->direccion=$request->direccion;
-        $d->objetivo=$request->objetivo;
+        $d=new Detalle();
         $d->codDetalle=$request->codDetalle;
+        $d->nroDoc=$request->nroDoc;
+        $d->descripcion=$request->descripcion;
+        $d->localizacion=$request->localizacion;
+        $d->usuario=$request->usuario;
+        $d->idDocumento=$request->idDocumento;
         $d->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Requisito  $requisito
+     * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function show(Requisito $requisito)
+    public function show(Detalle $detalle)
     {
         //
     }
@@ -60,10 +59,10 @@ class RequisitoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Requisito  $requisito
+     * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function edit(Requisito $requisito)
+    public function edit(Detalle $detalle)
     {
         //
     }
@@ -72,31 +71,30 @@ class RequisitoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Requisito  $requisito
+     * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        $d=Requisito::find($id);
-        $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
-        $d->ci=$request->ci;
-        $d->celular=$request->celular;
-        $d->direccion=$request->direccion;
-        $d->objetivo=$request->objetivo;
+        $d=Detalle::find($id);
         $d->codDetalle=$request->codDetalle;
+        $d->nroDoc=$request->nroDoc;
+        $d->descripcion=$request->descripcion;
+        $d->localizacion=$request->localizacion;
+        $d->usuario=$request->usuario;
+        $d->idDocumento=$request->idDocumento;
         $d->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Requisito  $requisito
+     * @param  \App\Models\Detalle  $detalle
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $d=Requisito::find($id);
-        $d->delete($id);
+        $d=Detalle::find($id);
+        $d->delete();
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRequisitosTable extends Migration
+class CreateDetallesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateRequisitosTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisitos', function (Blueprint $table) {
+        Schema::create('detalles', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('ci');
-            $table->string('celular');
-            $table->string('direccion');
-            $table->string('objetivo');
             $table->string('codDetalle');
+            $table->string('nroDoc');
+            $table->string('descripcion');
+            $table->string('localizacion');
+            $table->string('usuario');
+            $table->string('idDocumento');
             $table->timestamps();
         });
     }
@@ -33,6 +32,6 @@ class CreateRequisitosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisitos');
+        Schema::dropIfExists('detalles');
     }
 }
