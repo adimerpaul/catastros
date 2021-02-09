@@ -18,10 +18,10 @@
                                         <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-plus-circle"></i> Nuevo Tramite</h5>
                                     </div>
                                     <div class="modal-body">
-                                        <form @submit.prevent="guardar">                                            
+                                        <form @submit.prevent="guardar">
                                             <div class="form">
                                                 <div class="field-wrapper input">
-                                                    <label for="nombre">Nombre Tramite</label>
+                                                    <label for="nom">Nombre Tramite</label>
                                                     <!--select name="denuncia" id="denuncia" class="form-control" v-model="requisito.detalles" required>
                                                         <option value=""> Seleccionar...</option>
                                                         <option value="1"> Pago Impuestos a la transferencia</option>
@@ -39,8 +39,13 @@
                                                         <option value="13"> Plano demostrativo individual</option>
                                                         <option value="14"> Planos de propiedad horizontal</option>
                                                     </select-->
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" id="nom" v-model="requisito.nombre">
                                                 </div>
+                                                <div class="field-wrapper input">
+                                                    <label for="det">Detalle del tramite</label>
+                                                    <input type="text" class="form-control" id="det" v-model="requisito.detalle">
+                                                </div>
+
                                                 <div class="form-group">
                                                     <table class="table">
                                                         <thead>
@@ -51,28 +56,17 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr v-for="(item,index) in requisito.detalles" :key="index">
+                                                        <tr v-for="(i,index) in requisito.detalles" :key="index">
+                                                            <th scope="row">{{index+1}}</th>
+                                                            <td><input type="text" class="form-control" :name="i.nombre" v-model="i.nombre"></td>
                                                             <td>
-                                                                {{index+1}}
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" v-model="item.nombre" style="padding: 0;margin: 0;border: 1px solid black">
-                                                            </td>
-                                                            <td>
-                                                                <input type="text" v-model="item.unidad" style="padding: 0;margin: 0;border: 1px solid black">
-                                                            </td>
-                                                            <td>
-                                                                <button type="button" @click="mas" class="btn btn-success btn-sm" style="padding: 0px">
-                                                                    +
-                                                                </button>
-                                                                <button v-if="index!=0" type="button" @click="menos(index)" class="btn btn-danger btn-sm" style="padding: 0px">
-                                                                    -
-                                                                </button>
+                                                                <div @click="mas"  class="btn btn-success btn-sm"><i class="fa fa-plus"></i></div>
+                                                                <div @click="menos(index)" v-if="index!=0" class="btn btn-danger btn-sm"><i class="fa fa-minus"></i></div>
                                                             </td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
-                                                </div>                                             
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
@@ -87,10 +81,10 @@
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel2">Modificar Tramite</h5>                                        
+                                        <h5 class="modal-title" id="exampleModalLabel2">Modificar Tramite</h5>
                                     </div>
                                     <div class="modal-body">
-                                        <form @submit.prevent="update">                                            
+                                        <form @submit.prevent="update">
                                             <div class="form-group row">
                                                 <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
                                                 <div class="col-sm-8">
@@ -100,7 +94,7 @@
                                                 <div class="col-sm-8">
                                                 <input type="text" v-model="requisito.detalles" class="form-control" id="detalles">
                                                 </div>
-                                                
+
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
@@ -116,19 +110,12 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
-                                    <th>Documentos</th>                                    
+                                    <th>Documentos</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(i,index) in requisito.detalles" :key="index">
-                                    <th scope="row">{{index+1}}</th>
-                                    <td><input type="text" class="form-control" :name="i.nombre" v-model="i.nombre"></td>
-                                    <td>
-                                        <div @click="mas"  class="btn btn-success btn-sm"><i class="fa fa-plus"></i></div>
-                                        <div @click="menos(index)" v-if="index!=0" class="btn btn-danger btn-sm"><i class="fa fa-minus"></i></div>
-                                    </td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>
@@ -193,7 +180,7 @@
                 })
             },
             crear(){
-                this.requisito={};
+                this.requisito={detalles:[{nombre:''}]};
             }
         }
     }

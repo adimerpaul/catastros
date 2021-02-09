@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Detalle;
 use App\Models\Requisito;
 use Illuminate\Http\Request;
 
@@ -37,13 +38,14 @@ class RequisitoController extends Controller
     {
         $d=new Requisito();
         $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
-        $d->ci=$request->ci;
-        $d->celular=$request->celular;
-        $d->direccion=$request->direccion;
-        $d->objetivo=$request->objetivo;
-        $d->codDetalle=$request->codDetalle;
+        $d->detalles=$request->detalle;
         $d->save();
+        foreach ($request->detalles as $detalle){
+            $de=new Detalle();
+            $de->nombre=$detalle['nombre'];
+            $de->requisito_id=$d->id;
+            $de->save();
+        }
     }
 
     /**
