@@ -2208,6 +2208,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -38675,7 +38687,7 @@ var render = function() {
               },
               [
                 _c("i", { staticClass: "fa fa-plus" }),
-                _vm._v(" Nuevo tramite\n                    ")
+                _vm._v(" Nuevo tramite\n                        ")
               ]
             ),
             _vm._v(" "),
@@ -38898,17 +38910,12 @@ var render = function() {
                           }
                         },
                         [
-                          _c("div", { staticClass: "form-group row" }, [
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-sm-3 col-form-label",
-                                attrs: { for: "nombre" }
-                              },
-                              [_vm._v("Nombre")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-8" }, [
+                          _c("div", { staticClass: "form" }, [
+                            _c("div", { staticClass: "field-wrapper input" }, [
+                              _c("label", { attrs: { for: "nom" } }, [
+                                _vm._v("Nombre Tramite")
+                              ]),
+                              _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
@@ -38919,7 +38926,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "text", id: "nombre" },
+                                attrs: { type: "text", id: "nom" },
                                 domProps: { value: _vm.requisito.nombre },
                                 on: {
                                   input: function($event) {
@@ -38936,28 +38943,23 @@ var render = function() {
                               })
                             ]),
                             _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-sm-3 col-form-label",
-                                attrs: { for: "detalles" }
-                              },
-                              [_vm._v("Detalles")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-8" }, [
+                            _c("div", { staticClass: "field-wrapper input" }, [
+                              _c("label", { attrs: { for: "det" } }, [
+                                _vm._v("Detalle del tramite")
+                              ]),
+                              _vm._v(" "),
                               _c("input", {
                                 directives: [
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.requisito.detalles,
-                                    expression: "requisito.detalles"
+                                    value: _vm.requisito.detalle,
+                                    expression: "requisito.detalle"
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "text", id: "detalles" },
-                                domProps: { value: _vm.requisito.detalles },
+                                attrs: { type: "text", id: "det" },
+                                domProps: { value: _vm.requisito.detalle },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
@@ -38965,16 +38967,104 @@ var render = function() {
                                     }
                                     _vm.$set(
                                       _vm.requisito,
-                                      "detalles",
+                                      "detalle",
                                       $event.target.value
                                     )
                                   }
                                 }
                               })
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("table", { staticClass: "table" }, [
+                                _vm._m(4),
+                                _vm._v(" "),
+                                _c(
+                                  "tbody",
+                                  _vm._l(_vm.requisito.detalles, function(
+                                    i,
+                                    index
+                                  ) {
+                                    return _c("tr", { key: index }, [
+                                      _c("th", { attrs: { scope: "row" } }, [
+                                        _vm._v(_vm._s(index + 1))
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value: i.nombre,
+                                              expression: "i.nombre"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            name: i.nombre
+                                          },
+                                          domProps: { value: i.nombre },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                i,
+                                                "nombre",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("td", [
+                                        _c(
+                                          "div",
+                                          {
+                                            staticClass:
+                                              "btn btn-success btn-sm",
+                                            on: { click: _vm.mas }
+                                          },
+                                          [
+                                            _c("i", {
+                                              staticClass: "fa fa-plus"
+                                            })
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        index != 0
+                                          ? _c(
+                                              "div",
+                                              {
+                                                staticClass:
+                                                  "btn btn-danger btn-sm",
+                                                on: {
+                                                  click: function($event) {
+                                                    return _vm.menos(index)
+                                                  }
+                                                }
+                                              },
+                                              [
+                                                _c("i", {
+                                                  staticClass: "fa fa-minus"
+                                                })
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ])
+                                    ])
+                                  }),
+                                  0
+                                )
+                              ])
                             ])
                           ]),
                           _vm._v(" "),
-                          _vm._m(4)
+                          _vm._m(5)
                         ]
                       )
                     ])
@@ -38983,7 +39073,51 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._m(5)
+            _c("table", { staticClass: "table" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.requisitos, function(i, index) {
+                  return _c("tr", { key: index }, [
+                    _c("td", [_vm._v(_vm._s(index + 1))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(i.nombre))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(i.detalles))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-warning btn-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.actualizar(i)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-pencil" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.eliminar(i.id)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fa fa-trash" })]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
           ])
         ])
       ])
@@ -39057,6 +39191,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td", [_vm._v("N")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Documento")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Opciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-footer" }, [
       _c(
         "button",
@@ -39078,20 +39226,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", [_vm._v("ID")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Nombre")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Documentos")]),
-          _vm._v(" "),
-          _c("th", [_vm._v("Opciones")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tbody")
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Detalles")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opciones")])
+      ])
     ])
   }
 ]

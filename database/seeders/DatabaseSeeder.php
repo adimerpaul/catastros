@@ -21,7 +21,12 @@ class DatabaseSeeder extends Seeder
             PersonaSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
-        DB::table('users')->insert(['name'=>'admin','email'=>'admin@gmail.com','password'=>Hash::make('admin')]);
+        DB::table('users')->insert([
+            'name'=>'admin',
+            'tipo'=>'admin',
+            'email'=>'admin@gmail.com',
+            'password'=>Hash::make('admin')]
+        );
         
     }
 }
