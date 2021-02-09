@@ -15,7 +15,7 @@ class RequisitoController extends Controller
      */
     public function index()
     {
-        return Requisito::all();
+        return Requisito::with('detalles')->get();
     }
 
     /**
@@ -37,8 +37,8 @@ class RequisitoController extends Controller
     public function store(Request $request)
     {
         $d=new Requisito();
-        $d->nombre=$request->nombre;
-        $d->detalles=$request->detalle;
+        $d->nombres=$request->nombre;
+        $d->descripcion=$request->descripcion;
         $d->save();
         foreach ($request->detalles as $detalle){
             $de=new Detalle();
@@ -81,7 +81,7 @@ class RequisitoController extends Controller
     {
         $d=Requisito::find($id);
         $d->nombre=$request->nombre;
-        $d->detalles=$request->detalle;
+        $d->descripcion=$request->descripcion;
         $d->save();
         foreach ($request->detalles as $detalle){
             $de=Detalle::find($d->id);

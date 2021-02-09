@@ -2,6 +2,15 @@
 require('./bootstrap');
 
 import Vue from "vue";
+
+import VueSweetalert2 from 'vue-sweetalert2';
+
+// If you don't need the styles, do not connect
+
+Vue.use(VueSweetalert2);
+
+
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 

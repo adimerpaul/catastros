@@ -112,9 +112,10 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
+                                    <th>#</th>
                                     <th>Nombre</th>
                                     <th>Detalles</th>
+                                    <th>Documentos</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -122,7 +123,14 @@
                                 <tr v-for="(i,index) in requisitos" :key="index">
                                     <td>{{index+1}}</td>
                                     <td>{{i.nombre}}</td>
-                                    <td>{{i.detalles}}</td>
+                                    <td>{{i.descripcion}}</td>
+                                    <td>
+                                        <ul>
+                                            <li v-for="(d,index) in i.detalles" :key="index" >{{d.nombre}}</li>
+                                        </ul>
+                                        
+
+                                    </td>
                                     <td>
                                         <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
                                         <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
@@ -148,7 +156,7 @@
             }
         },
         mounted() {
-            console.log('Component mounted.');
+            //console.log('Component mounted.');
             this.datos();
             //crear(){
             //    this.requisito={};
@@ -166,6 +174,15 @@
                     $('#registrar').modal('hide');
                     this.datos();
                     this.requisito={};
+                    this.$swal('Registro','exitoso','success');
+                }).catch(e=>{
+                    //this.$swal('Registro','exitoso','success');
+                    this.$swal({
+                        title: "Error",
+                        text: e.response.data.message,
+                        type: "error",
+                        // timer: 3000
+                    })
                 })
             },
             datos(){
