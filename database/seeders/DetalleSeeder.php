@@ -207,6 +207,90 @@ class DetalleSeeder extends Seeder
                 'nombre'=>'3 FOTOCOPIAS DE LOS PAGOS DE TASAS POR SERVICIOS ULTIMAS 5 GESTIONES',
                 'requisito_id'=>5
             ],
+            [
+                'nombre'=>'1 FOTOCOPIA DE C.I. DE LOS PROPIETARIOS',
+                'requisito_id'=>5
+            ],
+            [
+                'nombre'=>'1 FOTOCOPIA SIMPLE DEL COMPROBANTE DE PAGO POR CONEXION DE ALCANTARILLADO',
+                'requisito_id'=>5
+            ],
+            [
+                'nombre'=>'COMPROBANTE DE PAGO POR DERECHO DE INSPECCION EN EL BUS (RECABAR EN LIQUIDACION DE CATASTRO)',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'FORMULARIO UNICO DE SOLICITUD 001 (LLENADO), MAS UNA FOTOCOPIA DEL LLENADO',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'HOJA TECNICA (adquirir en valores)',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'PLANO DEMOSTRATIVO CON TIMBRE DE 10 Bs. ORIGINAL MAS 2 FOTOCOPIAS SIMPLES',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'FOTOCOPIA SIMPLE DEL COMPROBANTE DE CAJA POR CAMBIO DE NOMBRE',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'3 FOTOCOPIAS DE TESTIMONIO DE PROPIEDAD MATRICULADO (1 LEGALIZADO EN DIRECCION JURIDICA DE LA G.A.M.O)',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'3 FOTOCOPIAS DE LOS PAGOS DE IMPUESTOS ULTIMAS 5 GESTIONES',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'3 FOTOCOPIAS DE LOS PAGOS DE TASAS POR SERVICIOS ULTIMAS 5 GESTIONES',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'1 FOTOCOPIA DE C.I. DE LOS PROPIETARIOS',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'1 FOTOCOPIA SIMPLE DEL COMPROBANTE PAGO POR CONEXION DE ALCANTARILLADO',
+                'requisito_id'=>6
+            ],
+            [
+                'nombre'=>'COMPROBANTE DE PAGO POR DERECHO DE INSPECCION EN EL BUS (RECABAR EN LIQUIDACION DE CATASTRO)',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'FORMULARIO UNICO DE SOLICITUD 001 (LLENADO), MAS UNA FOTOCOPIA DEL LLENADO',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'HOJA TECNICA (adquirir en valores)',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'FORMULARIO 23 (LLENADO EN SUS TRES COPIAS)',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'3 FOTOCOPIAS SIMPLES DEL PLANO DEMOSTRATIVO ACTUALIZADO',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'2 FOTOCOPIAS SIMPLES DEL TESTIMONIO DE PROPIEDAD MATRICULADO O CON PARTIDA',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'2 FOTOCOPIAS SIMPLES DEL TESTIMONIO ANTERIOR',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'1 FOTOCOPIA DE C.I. DE LOS PROPIETARIOS',
+                'requisito_id'=>7
+            ],
+            [
+                'nombre'=>'2 FOTOCOPIAS SIMPLES DE COMPROBANTE DE PAGO POR CONEXION DE ALCANTARILLADO',
+                'requisito_id'=>7
+            ],
             
         ]);
     }

@@ -94,7 +94,7 @@
                                             <div class="form-group row">
                                                 <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.nombre" class="form-control" id="nombre">
+                                                    <input type="text" v-model="requisito.nombre" class="form-control" id="nombre">
                                                 </div>
                                                 <label for="detalles" class="col-sm-3 col-form-label">Detalles</label>
                                                 <div class="col-sm-8">
