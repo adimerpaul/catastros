@@ -37,7 +37,7 @@ class RequisitoController extends Controller
     public function store(Request $request)
     {
         $d=new Requisito();
-        $d->nombres=$request->nombre;
+        $d->nombre=$request->nombre;
         $d->descripcion=$request->descripcion;
         $d->save();
         foreach ($request->detalles as $detalle){
@@ -83,8 +83,9 @@ class RequisitoController extends Controller
         $d->nombre=$request->nombre;
         $d->descripcion=$request->descripcion;
         $d->save();
+        $de=Detalle::where('requisito_id',$id)->delete();
         foreach ($request->detalles as $detalle){
-            $de=Detalle::find($d->id);
+            $de= new Detalle();
             $de->nombre=$detalle['nombre'];
             $de->requisito_id=$d->id;
             $de->save();
@@ -99,7 +100,8 @@ class RequisitoController extends Controller
      */
     public function destroy($id)
     {
+        $de=Detalle::where('requisito_id',$id)->delete();
         $d=Requisito::find($id);
-        $d->delete($id);
+        $d->delete();
     }
 }

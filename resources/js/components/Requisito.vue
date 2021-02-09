@@ -26,7 +26,7 @@
                                                 </div>
                                                 <div class="field-wrapper input">
                                                     <label for="det">Detalle del tramite</label>
-                                                    <input type="text" class="form-control" id="det" v-model="requisito.detalle">
+                                                    <input type="text" class="form-control" id="det" v-model="requisito.descripcion">
                                                 </div>
 
                                                 <div class="form-group">
@@ -53,7 +53,12 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
-                                                <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guargar Datos</button>
+                                                
+                                                <button v-if="guar" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guargar Datos</button>
+                                                <button v-else class="btn btn-success" type="button" disabled>
+                                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                                    Guargar Datos
+                                                </button>
                                             </div>
                                         </form>
                                     </div>
@@ -75,7 +80,7 @@
                                                 </div>
                                                 <div class="field-wrapper input">
                                                     <label for="det">Detalle del tramite</label>
-                                                    <input type="text" class="form-control" id="det" v-model="requisito.detalle">
+                                                    <input type="text" class="form-control" id="det" v-model="requisito.descripcion">
                                                 </div>
 
                                                 <div class="form-group">
@@ -114,7 +119,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nombre</th>
-                                    <th>Detalles</th>
+                                    <th>Descripcion</th>
                                     <th>Documentos</th>
                                     <th>Opciones</th>
                                 </tr>
@@ -127,13 +132,16 @@
                                     <td>
                                         <ul>
                                             <li v-for="(d,index) in i.detalles" :key="index" >{{d.nombre}}</li>
-                                        </ul>
-                                        
+                                        </ul>                                
 
                                     </td>
                                     <td>
-                                        <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
+                                            <button class="btn btn-info btn-sm" @click="imprimir(i)"><i class="fa fa-print"></i></button>
+                                        </div>
+                                        
                                     </td>
                                 </tr>
                             </tbody>
@@ -147,12 +155,15 @@
 
 <script>
     const axios=require('axios');
+    import jsPDF from 'jspdf'
+
     export default {
         data(){
             return {
                 requisito:{detalles:[{nombre:''}]},
                                 //dato:{hijos:[{nombres:'',apellidos:''}]},
-                requisitos:[]
+                requisitos:[],
+                guar:true,
             }
         },
         mounted() {
@@ -163,6 +174,12 @@
             //}
         },
         methods:{
+             imprimir () {
+                let pdfName = 'test'; 
+                var doc = new jsPDF();
+                doc.text("Hello World", 10, 10);
+                doc.save(pdfName + '.pdf');
+            },
             mas(){
                 this.requisito.detalles.push({nombres:'',apellidos:''});
             },
@@ -170,11 +187,13 @@
                 this.requisito.detalles.splice(index, 1);
             },
             guardar(){
+                this.guar=false;
                 axios.post('/requisito',this.requisito).then(res=>{
                     $('#registrar').modal('hide');
                     this.datos();
                     this.requisito={};
                     this.$swal('Registro','exitoso','success');
+                    this.guar=true;
                 }).catch(e=>{
                     //this.$swal('Registro','exitoso','success');
                     this.$swal({
@@ -183,6 +202,7 @@
                         type: "error",
                         // timer: 3000
                     })
+                    this.guar=true;
                 })
             },
             datos(){
@@ -191,11 +211,23 @@
                 })
             },
             eliminar(id){
-                if(confirm('Seguro desea eliminar?')){
-                    axios.delete('/requisito/'+id).then(res=>{
-                        this.datos();
-                    });
-                }
+                this.$swal({
+                    title: 'Estas seguro?',
+                    text: "No podras revertir el proceso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Hazlo!',
+                    cancelButtonText: 'No.'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete('/requisito/'+id).then(res=>{
+                            this.datos();
+                            this.$swal('Invalido','Tramite Eliminado','success');
+                        });
+                    }
+                })
             },
             actualizar(i){
                 this.requisito=i;
@@ -204,8 +236,9 @@
             update(){
                 axios.put('/requisito/'+this.requisito.id, this.requisito).then(res=>{
                     $('#modificar').modal('hide');
-                    this.datos();
+                    this.datos();                    
                     this.requisito={};
+                    this.$swal('Modificado','Guardado Correctamente','success');
                 })
             },
             crear(){
