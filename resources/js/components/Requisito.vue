@@ -21,24 +21,7 @@
                                         <form @submit.prevent="guardar">
                                             <div class="form">
                                                 <div class="field-wrapper input">
-                                                    <label for="nom">Nombre Tramite</label>
-                                                    <!--select name="denuncia" id="denuncia" class="form-control" v-model="requisito.detalles" required>
-                                                        <option value=""> Seleccionar...</option>
-                                                        <option value="1"> Pago Impuestos a la transferencia</option>
-                                                        <option value="2"> Legalizacion de Plano demostrativo</option>
-                                                        <option value="3"> Certificacion general/Informe tecnico</option>
-                                                        <option value="4"> Certificado catastral y Prestamo bancario</option>
-                                                        <option value="5"> Empadronamiento y Cambio de nombre</option>
-                                                        <option value="6"> Recatastracion</option>
-                                                        <option value="7"> Regulacion de impuestos</option>
-                                                        <option value="8"> Tramites de excedencia</option>
-                                                        <option value="9"> Aprobacion de planos de construccion</option>
-                                                        <option value="10"> Linea nivel y Orden de amurallamiento</option>
-                                                        <option value="11"> Aprobacion de plano de fraccionamiento</option>
-                                                        <option value="12"> Aprobacion planos de unificacion</option>
-                                                        <option value="13"> Plano demostrativo individual</option>
-                                                        <option value="14"> Planos de propiedad horizontal</option>
-                                                    </select-->
+                                                    <label for="nom">Nombre Tramite</label>                                                    
                                                     <input type="text" class="form-control" id="nom" v-model="requisito.nombre">
                                                 </div>
                                                 <div class="field-wrapper input">
@@ -85,16 +68,37 @@
                                     </div>
                                     <div class="modal-body">
                                         <form @submit.prevent="update">
-                                            <div class="form-group row">
-                                                <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
-                                                <div class="col-sm-8">
-                                                    <input type="text" v-model="requisito.nombre" class="form-control" id="nombre">
+<div class="form">
+                                                <div class="field-wrapper input">
+                                                    <label for="nom">Nombre Tramite</label>                                                    
+                                                    <input type="text" class="form-control" id="nom" v-model="requisito.nombre">
                                                 </div>
-                                                <label for="detalles" class="col-sm-3 col-form-label">Detalles</label>
-                                                <div class="col-sm-8">
-                                                <input type="text" v-model="requisito.detalles" class="form-control" id="detalles">
+                                                <div class="field-wrapper input">
+                                                    <label for="det">Detalle del tramite</label>
+                                                    <input type="text" class="form-control" id="det" v-model="requisito.detalle">
                                                 </div>
 
+                                                <div class="form-group">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <td>N</td>
+                                                            <td>Documento</td>
+                                                            <td>Opciones</td>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr v-for="(i,index) in requisito.detalles" :key="index">
+                                                            <th scope="row">{{index+1}}</th>
+                                                            <td><input type="text" class="form-control" :name="i.nombre" v-model="i.nombre"></td>
+                                                            <td>
+                                                                <div @click="mas"  class="btn btn-success btn-sm"><i class="fa fa-plus"></i></div>
+                                                                <div @click="menos(index)" v-if="index!=0" class="btn btn-danger btn-sm"><i class="fa fa-minus"></i></div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
@@ -110,12 +114,20 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Nombre</th>
-                                    <th>Documentos</th>
+                                    <th>Detalles</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <tr v-for="(i,index) in requisitos" :key="index">
+                                    <td>{{index+1}}</td>
+                                    <td>{{i.nombre}}</td>
+                                    <td>{{i.detalles}}</td>
+                                    <td>
+                                        <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

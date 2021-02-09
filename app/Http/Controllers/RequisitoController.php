@@ -81,13 +81,14 @@ class RequisitoController extends Controller
     {
         $d=Requisito::find($id);
         $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
-        $d->ci=$request->ci;
-        $d->celular=$request->celular;
-        $d->direccion=$request->direccion;
-        $d->objetivo=$request->objetivo;
-        $d->codDetalle=$request->codDetalle;
+        $d->detalles=$request->detalle;
         $d->save();
+        foreach ($request->detalles as $detalle){
+            $de=Detalle::find($d->id);
+            $de->nombre=$detalle['nombre'];
+            $de->requisito_id=$d->id;
+            $de->save();
+        }
     }
 
     /**
