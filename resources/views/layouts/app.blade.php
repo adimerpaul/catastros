@@ -57,7 +57,7 @@
                             v-slot="{ href, route, navigate, isActive, isExactActive }">
                             <li class="nav-item">
                                 <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="fa fa-clipboard"></i> Personas
+                                    <i class="fa fa-list"></i> Personas
 
                                 </a>
                             </li>
@@ -78,7 +78,7 @@
                             v-slot="{ href, route, navigate, isActive, isExactActive }">
                             <li class="nav-item">
                                 <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="fa fa-clipboard"></i> Usuarios
+                                    <i class="fa fa-user-plus"></i> Usuarios
 
                                 </a>
                             </li>
