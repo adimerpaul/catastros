@@ -73,7 +73,16 @@
                                 </a>
                             </li>
                         </router-link>
+                        <router-link
+                            to="/users"
+                            v-slot="{ href, route, navigate, isActive, isExactActive }">
+                            <li class="nav-item">
+                                <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                    <i class="fa fa-clipboard"></i> Usuarios
 
+                                </a>
+                            </li>
+                        </router-link>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

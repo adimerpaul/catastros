@@ -2414,6 +2414,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue");
 /* harmony import */ var _components_Requisito__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Requisito */ "./resources/js/components/Requisito.vue");
 /* harmony import */ var _components_Persona__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Persona */ "./resources/js/components/Persona.vue");
+/* harmony import */ var _components_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/user */ "./resources/js/components/user.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -2421,6 +2422,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 vue__WEBPACK_IMPORTED_MODULE_1__.default.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_0__.default);
 
 vue__WEBPACK_IMPORTED_MODULE_1__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_2__.default);
+
 
 
 
@@ -2433,6 +2435,9 @@ var routes = [{
 }, {
   path: '/personas',
   component: _components_Persona__WEBPACK_IMPORTED_MODULE_5__.default
+}, {
+  path: '/users',
+  component: _components_user__WEBPACK_IMPORTED_MODULE_6__.default
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
   mode: 'history',
@@ -46146,6 +46151,40 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/Requisito.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/user.vue":
+/*!******************************************!*\
+  !*** ./resources/js/components/user.vue ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__.default)(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/components/user.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
