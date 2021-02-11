@@ -139,7 +139,7 @@
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
                                             <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
-                                            <button class="btn btn-info btn-sm" @click="imprimir(i)"><i class="fa fa-print"></i></button>
+                                            <button class="btn btn-info btn-sm" @click="imprimir(i,d)"><i class="fa fa-print"></i></button>
                                         </div>
                                         
                                     </td>
@@ -156,6 +156,8 @@
 <script>
     const axios=require('axios');
     import jsPDF from 'jspdf'
+    
+    import 'jspdf-autotable'
 
     export default {
         data(){
@@ -174,11 +176,24 @@
             //}
         },
         methods:{
-             imprimir () {
-                let pdfName = 'test'; 
-                var doc = new jsPDF();
-                doc.text("Hello World", 10, 10);
-                doc.save(pdfName + '.pdf');
+             imprimir (i,d) {
+                const doc = new jsPDF()
+
+                // It can parse html:
+                // <table id="my-table"><!-- ... --></table>
+                doc.autoTable({ html: '#table' })
+
+                // Or use javascript directly:
+                doc.autoTable({
+                head: [['Nombre', 'Descripcion', 'Documentos']],
+                body: [
+                    [(i.nombre), (i.descripcion), (d.nombre)],                    
+                    // ...
+                ],
+                })
+
+                doc.save('table.pdf')
+
             },
             mas(){
                 this.requisito.detalles.push({nombres:'',apellidos:''});
