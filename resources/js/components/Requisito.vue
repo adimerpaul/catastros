@@ -114,7 +114,7 @@
                                 </div>
                             </div>
                         </div>
-                        <table class="table">
+                        <table class="table" border="1 solid black">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -139,7 +139,7 @@
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
                                             <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
-                                            <button class="btn btn-info btn-sm" @click="imprimir(i,d)"><i class="fa fa-print"></i></button>
+                                            <button class="btn btn-info btn-sm" @click="imprimir(i)"><i class="fa fa-print"></i></button>
                                         </div>
                                         
                                     </td>
@@ -176,20 +176,37 @@
             //}
         },
         methods:{
-             imprimir (i,d) {
-                const doc = new jsPDF()
+             imprimir (i) {
+                const doc = new jsPDF({
+                    orientation:"landscape",
+                    unit: "cm",
+                    format: "letter"
+                })
 
                 // It can parse html:
                 // <table id="my-table"><!-- ... --></table>
-                doc.autoTable({ html: '#table' })
+                var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+                var text=i.nombre;
+                var t2=i.descripcion;
+                doc.text(text,pageWidth/2,3,'center');
+                doc.text(t2, pageWidth/2,4,'center');
+                //doc.autoTable({ html: '#table' })
 
                 // Or use javascript directly:
+                let body=[];
+                let con=0;
+                i.detalles.forEach(row => {
+                    con++;
+                    body.push([con,row.nombre]);
+                });
                 doc.autoTable({
-                head: [['Nombre', 'Descripcion', 'Documentos']],
-                body: [
-                    [(i.nombre), (i.descripcion), (d.nombre)],                    
-                    // ...
-                ],
+                theme: 'grid',
+                styles: { fillColor: [255, 0, 0] },
+                columnStyles: { 0: { halign: 'center', fillColor: [255, 0, 0], textColor: [255,255,255] } }, // Cells in first column centered and green
+                columnStyles: { 1:{fillColor:[255,255,255]}},
+                startY:5,
+                head: [['#', 'DOCUMENTOS NECESARIOS']],
+                body:body,
                 })
 
                 doc.save('table.pdf')

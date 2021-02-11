@@ -2084,6 +2084,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jspdf__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jspdf */ "./node_modules/jspdf/dist/jspdf.es.min.js");
 /* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jspdf-autotable */ "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js");
 /* harmony import */ var jspdf_autotable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jspdf_autotable__WEBPACK_IMPORTED_MODULE_1__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2263,19 +2265,46 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     //}
   },
   methods: {
-    imprimir: function imprimir(i, d) {
-      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0__.default(); // It can parse html:
+    imprimir: function imprimir(i) {
+      var _doc$autoTable;
+
+      var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0__.default({
+        orientation: "landscape",
+        unit: "cm",
+        format: "letter"
+      }); // It can parse html:
       // <table id="my-table"><!-- ... --></table>
 
-      doc.autoTable({
-        html: '#table'
-      }); // Or use javascript directly:
+      var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+      var text = i.nombre;
+      var t2 = i.descripcion;
+      doc.text(text, pageWidth / 2, 3, 'center');
+      doc.text(t2, pageWidth / 2, 4, 'center'); //doc.autoTable({ html: '#table' })
+      // Or use javascript directly:
 
-      doc.autoTable({
-        head: [['Nombre', 'Descripcion', 'Documentos']],
-        body: [[i.nombre, i.descripcion, d.nombre] // ...
-        ]
+      var body = [];
+      var con = 0;
+      i.detalles.forEach(function (row) {
+        con++;
+        body.push([con, row.nombre]);
       });
+      doc.autoTable((_doc$autoTable = {
+        theme: 'grid',
+        styles: {
+          fillColor: [255, 0, 0]
+        },
+        columnStyles: {
+          0: {
+            halign: 'center',
+            fillColor: [255, 0, 0],
+            textColor: [255, 255, 255]
+          }
+        }
+      }, _defineProperty(_doc$autoTable, "columnStyles", {
+        1: {
+          fillColor: [255, 255, 255]
+        }
+      }), _defineProperty(_doc$autoTable, "startY", 5), _defineProperty(_doc$autoTable, "head", [['#', 'DOCUMENTOS NECESARIOS']]), _defineProperty(_doc$autoTable, "body", body), _doc$autoTable));
       doc.save('table.pdf');
     },
     mas: function mas() {
@@ -47388,88 +47417,92 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("table", { staticClass: "table" }, [
-              _vm._m(6),
-              _vm._v(" "),
-              _c(
-                "tbody",
-                _vm._l(_vm.requisitos, function(i, index) {
-                  return _c("tr", { key: index }, [
-                    _c("td", [_vm._v(_vm._s(index + 1))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(i.nombre))]),
-                    _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(i.descripcion))]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "ul",
-                        _vm._l(i.detalles, function(d, index) {
-                          return _c("li", { key: index }, [
-                            _vm._v(_vm._s(d.nombre))
-                          ])
-                        }),
-                        0
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", [
-                      _c(
-                        "div",
-                        {
-                          staticClass: "btn-group",
-                          attrs: {
-                            role: "group",
-                            "aria-label": "Basic example"
-                          }
-                        },
-                        [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-warning btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.actualizar(i)
+            _c(
+              "table",
+              { staticClass: "table", attrs: { border: "1 solid black" } },
+              [
+                _vm._m(6),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.requisitos, function(i, index) {
+                    return _c("tr", { key: index }, [
+                      _c("td", [_vm._v(_vm._s(index + 1))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(i.nombre))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(i.descripcion))]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "ul",
+                          _vm._l(i.detalles, function(d, index) {
+                            return _c("li", { key: index }, [
+                              _vm._v(_vm._s(d.nombre))
+                            ])
+                          }),
+                          0
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("td", [
+                        _c(
+                          "div",
+                          {
+                            staticClass: "btn-group",
+                            attrs: {
+                              role: "group",
+                              "aria-label": "Basic example"
+                            }
+                          },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-warning btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.actualizar(i)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-pencil" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-danger btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.eliminar(i.id)
+                              },
+                              [_c("i", { staticClass: "fa fa-pencil" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-danger btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.eliminar(i.id)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-trash" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "btn btn-info btn-sm",
-                              on: {
-                                click: function($event) {
-                                  return _vm.imprimir(i, _vm.d)
+                              },
+                              [_c("i", { staticClass: "fa fa-trash" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-info btn-sm",
+                                on: {
+                                  click: function($event) {
+                                    return _vm.imprimir(i)
+                                  }
                                 }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-print" })]
-                          )
-                        ]
-                      )
+                              },
+                              [_c("i", { staticClass: "fa fa-print" })]
+                            )
+                          ]
+                        )
+                      ])
                     ])
-                  ])
-                }),
-                0
-              )
-            ])
+                  }),
+                  0
+                )
+              ]
+            )
           ])
         ])
       ])
