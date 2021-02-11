@@ -16,7 +16,7 @@ Vue.use(VueRouter)
 import honme from './components/ExampleComponent';
 import requisitos from './components/Requisito';
 import personas from './components/Persona';
-import users from './components/user';
+import users from './components/User';
 
 
 

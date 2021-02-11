@@ -20,25 +20,25 @@
                                     <div class="modal-body">
                                         <form @submit.prevent="guardar">                                            
                                             <div class="form-group row">
-                                                <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+                                                <label for="name" class="col-sm-3 col-form-label">Nombre</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="persona.nombre" class="form-control" id="name" placeholder="Nombre">
+                                                <input type="text" v-model="user.name" class="form-control" id="name" placeholder="Nombre">
                                                 </div>
                                                 <label for="email" class="col-sm-3 col-form-label">Correo</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="persona.email" class="form-control" id="email" placeholder="Correo">
+                                                <input type="text" v-model="user.email" class="form-control" id="email" placeholder="Correo">
                                                 </div>
                                                 <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
                                                 <div class="col-sm-8">
-                                                <input type="password" v-model="persona.password" class="form-control" id="password" placeholder="Contraseña">
+                                               <input type="password" v-model="user.password" class="form-control" id="password" placeholder="Contraseña">
                                                 </div>
-                                                <label for="password" class="col-sm-3 col-form-label">Repetir C</label>
+                                                <!-- <label for="password" class="col-sm-3 col-form-label">Repetir C</label>
                                                 <div class="col-sm-8">
-                                                <input type="password" v-model="persona.password2" class="form-control" id="password2" placeholder="Contraseña">
-                                                </div>
+                                                <input type="password" v-model="user.password2" class="form-control" id="password2" placeholder="Contraseña">
+                                                </div>-->
                                                 <label for="tipo" class="col-sm-3 col-form-label">Tipo</label>
                                                 <div class="col-sm-8">
-                                                <select name="tipo" v-model="persona.tipo" id="tipo" class="form-control" required>
+                                                <select name="tipo" v-model="user.tipo" id="tipo" class="form-control" required>
                                                 <option value="Recepcionista">Recepcionista</option>
                                                 <option value="Admin">Admin</option>
                                                 </select>
@@ -65,24 +65,24 @@
                                             <div class="form-group row">
                                                 <label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="persona.name" class="form-control" id="name">
+                                                <input type="text" v-model="user.name" class="form-control" id="name">
                                                 </div>
                                                 <label for="email" class="col-sm-3 col-form-label">email</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="persona.email" class="form-control" id="Correo">
+                                                <input type="text" v-model="user.email" class="form-control" id="Correo">
                                                 </div>
                                                 <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
                                                 <div class="col-sm-8">
-                                                <input type="password" v-model="persona.password" class="form-control" id="password">
+                                                <input type="password" v-model="user.password" class="form-control" id="password">
                                                 </div>
                                                 <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
                                                 <div class="col-sm-8">
-                                                <input type="password" v-model="persona.password2" class="form-control" id="password2">
+                                                <input type="password" v-model="user.password2" class="form-control" id="password2">
                                                 </div>
                                                 
                                                 <label for="tipo" class="col-sm-3 col-form-label">Tipo</label>
                                                 <div class="col-sm-8">
-                                                    <select name="tipo" v-model="persona.tipo" id="tipo" class="form-control" required>
+                                                    <select name="tipo" v-model="user.tipo" id="tipo" class="form-control" required>
                                                         <option value="Recepcionista">Recepcionista</option>
                                                         <option value="Admin">Admin</option>
                                                     </select>
@@ -109,7 +109,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr v-for="(i,index) in personas" :key="index">
+                                <tr v-for="(i,index) in users" :key="index">
                                     <td>{{index+1}}</td>
                                     <td>{{i.nombre}}</td>
                                     <td>{{i.tipo}}</td>
@@ -134,8 +134,8 @@
     export default {
         data(){
             return {
-                persona:{},
-                personas:[]
+                user:{},
+                users:[]
             }
         },
         mounted() {
@@ -144,37 +144,37 @@
         },
         methods:{
             guardar(){
-                axios.post('/persona',this.persona).then(res=>{
+                axios.post('/user',this.user).then(res=>{
                     $('#registrar').modal('hide');
                     this.datos();
-                    this.persona={};
+                    this.user={};
                 })
             },
             datos(){
-                axios.get('/persona').then(res=>{
-                    this.personas=res.data;
+                axios.get('/user').then(res=>{
+                    this.users=res.data;
                 })
             },
             eliminar(id){
                 if(confirm('Seguro desea eliminar?')){
-                    axios.delete('/persona/'+id).then(res=>{
+                    axios.delete('/user/'+id).then(res=>{
                         this.datos();
                     });
                 }
             },
             actualizar(i){
-                this.persona=i;
+                this.user=i;
                 $('#modificar').modal('show');
             },
             update(){
-                axios.put('/persona/'+this.persona.id, this.persona).then(res=>{
+                axios.put('/user/'+this.user.id, this.user).then(res=>{
                     $('#modificar').modal('hide');
                     this.datos();
-                    this.persona={};
+                    this.user={};
                 })
             },
             crear(){
-                this.persona={};
+                this.user={};
             }
         }
     }

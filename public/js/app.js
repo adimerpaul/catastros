@@ -2400,9 +2400,9 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/user.vue?vue&type=script&lang=js&":
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/User.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/user.vue?vue&type=script&lang=js& ***!
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/User.vue?vue&type=script&lang=js& ***!
   \***********************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -2547,8 +2547,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      persona: {},
-      personas: []
+      user: {},
+      users: []
     };
   },
   mounted: function mounted() {
@@ -2559,47 +2559,47 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     guardar: function guardar() {
       var _this = this;
 
-      axios.post('/persona', this.persona).then(function (res) {
+      axios.post('/user', this.user).then(function (res) {
         $('#registrar').modal('hide');
 
         _this.datos();
 
-        _this.persona = {};
+        _this.user = {};
       });
     },
     datos: function datos() {
       var _this2 = this;
 
-      axios.get('/persona').then(function (res) {
-        _this2.personas = res.data;
+      axios.get('/user').then(function (res) {
+        _this2.users = res.data;
       });
     },
     eliminar: function eliminar(id) {
       var _this3 = this;
 
       if (confirm('Seguro desea eliminar?')) {
-        axios["delete"]('/persona/' + id).then(function (res) {
+        axios["delete"]('/user/' + id).then(function (res) {
           _this3.datos();
         });
       }
     },
     actualizar: function actualizar(i) {
-      this.persona = i;
+      this.user = i;
       $('#modificar').modal('show');
     },
     update: function update() {
       var _this4 = this;
 
-      axios.put('/persona/' + this.persona.id, this.persona).then(function (res) {
+      axios.put('/user/' + this.user.id, this.user).then(function (res) {
         $('#modificar').modal('hide');
 
         _this4.datos();
 
-        _this4.persona = {};
+        _this4.user = {};
       });
     },
     crear: function crear() {
-      this.persona = {};
+      this.user = {};
     }
   }
 });
@@ -2620,7 +2620,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ExampleComponent__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue");
 /* harmony import */ var _components_Requisito__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Requisito */ "./resources/js/components/Requisito.vue");
 /* harmony import */ var _components_Persona__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Persona */ "./resources/js/components/Persona.vue");
-/* harmony import */ var _components_user__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/user */ "./resources/js/components/user.vue");
+/* harmony import */ var _components_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/User */ "./resources/js/components/User.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
@@ -2643,7 +2643,7 @@ var routes = [{
   component: _components_Persona__WEBPACK_IMPORTED_MODULE_5__.default
 }, {
   path: '/users',
-  component: _components_user__WEBPACK_IMPORTED_MODULE_6__.default
+  component: _components_User__WEBPACK_IMPORTED_MODULE_6__.default
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__.default({
   mode: 'history',
@@ -46361,9 +46361,9 @@ component.options.__file = "resources/js/components/Requisito.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/user.vue":
+/***/ "./resources/js/components/User.vue":
 /*!******************************************!*\
-  !*** ./resources/js/components/user.vue ***!
+  !*** ./resources/js/components/User.vue ***!
   \******************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -46372,8 +46372,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./user.vue?vue&type=template&id=e039bdd4& */ "./resources/js/components/user.vue?vue&type=template&id=e039bdd4&");
-/* harmony import */ var _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user.vue?vue&type=script&lang=js& */ "./resources/js/components/user.vue?vue&type=script&lang=js&");
+/* harmony import */ var _User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./User.vue?vue&type=template&id=d884f594& */ "./resources/js/components/User.vue?vue&type=template&id=d884f594&");
+/* harmony import */ var _User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./User.vue?vue&type=script&lang=js& */ "./resources/js/components/User.vue?vue&type=script&lang=js&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -46383,9 +46383,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 ;
 var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__.default)(
-  _user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
-  _user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__.render,
-  _user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  _User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__.default,
+  _User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__.render,
+  _User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
   false,
   null,
   null,
@@ -46395,7 +46395,7 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/user.vue"
+component.options.__file = "resources/js/components/User.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -46448,9 +46448,9 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/user.vue?vue&type=script&lang=js&":
+/***/ "./resources/js/components/User.vue?vue&type=script&lang=js&":
 /*!*******************************************************************!*\
-  !*** ./resources/js/components/user.vue?vue&type=script&lang=js& ***!
+  !*** ./resources/js/components/User.vue?vue&type=script&lang=js& ***!
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -46459,8 +46459,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./user.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/user.vue?vue&type=script&lang=js&");
- /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_user_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./User.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/User.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__.default); 
 
 /***/ }),
 
@@ -46515,19 +46515,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/user.vue?vue&type=template&id=e039bdd4&":
+/***/ "./resources/js/components/User.vue?vue&type=template&id=d884f594&":
 /*!*************************************************************************!*\
-  !*** ./resources/js/components/user.vue?vue&type=template&id=e039bdd4& ***!
+  !*** ./resources/js/components/User.vue?vue&type=template&id=d884f594& ***!
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__.render),
-/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_user_vue_vue_type_template_id_e039bdd4___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./user.vue?vue&type=template&id=e039bdd4& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/user.vue?vue&type=template&id=e039bdd4&");
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_User_vue_vue_type_template_id_d884f594___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./User.vue?vue&type=template&id=d884f594& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/User.vue?vue&type=template&id=d884f594&");
 
 
 /***/ }),
@@ -47907,9 +47907,9 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/user.vue?vue&type=template&id=e039bdd4&":
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/User.vue?vue&type=template&id=d884f594&":
 /*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/user.vue?vue&type=template&id=e039bdd4& ***!
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/User.vue?vue&type=template&id=d884f594& ***!
   \****************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -47982,7 +47982,7 @@ var render = function() {
                               "label",
                               {
                                 staticClass: "col-sm-3 col-form-label",
-                                attrs: { for: "nombre" }
+                                attrs: { for: "name" }
                               },
                               [_vm._v("Nombre")]
                             ),
@@ -47993,8 +47993,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.persona.nombre,
-                                    expression: "persona.nombre"
+                                    value: _vm.user.name,
+                                    expression: "user.name"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -48003,15 +48003,15 @@ var render = function() {
                                   id: "name",
                                   placeholder: "Nombre"
                                 },
-                                domProps: { value: _vm.persona.nombre },
+                                domProps: { value: _vm.user.name },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.persona,
-                                      "nombre",
+                                      _vm.user,
+                                      "name",
                                       $event.target.value
                                     )
                                   }
@@ -48034,8 +48034,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.persona.email,
-                                    expression: "persona.email"
+                                    value: _vm.user.email,
+                                    expression: "user.email"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -48044,14 +48044,14 @@ var render = function() {
                                   id: "email",
                                   placeholder: "Correo"
                                 },
-                                domProps: { value: _vm.persona.email },
+                                domProps: { value: _vm.user.email },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.persona,
+                                      _vm.user,
                                       "email",
                                       $event.target.value
                                     )
@@ -48075,8 +48075,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.persona.password,
-                                    expression: "persona.password"
+                                    value: _vm.user.password,
+                                    expression: "user.password"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -48085,56 +48085,15 @@ var render = function() {
                                   id: "password",
                                   placeholder: "Contraseña"
                                 },
-                                domProps: { value: _vm.persona.password },
+                                domProps: { value: _vm.user.password },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.persona,
+                                      _vm.user,
                                       "password",
-                                      $event.target.value
-                                    )
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c(
-                              "label",
-                              {
-                                staticClass: "col-sm-3 col-form-label",
-                                attrs: { for: "password" }
-                              },
-                              [_vm._v("Repetir C")]
-                            ),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "col-sm-8" }, [
-                              _c("input", {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.persona.password2,
-                                    expression: "persona.password2"
-                                  }
-                                ],
-                                staticClass: "form-control",
-                                attrs: {
-                                  type: "password",
-                                  id: "password2",
-                                  placeholder: "Contraseña"
-                                },
-                                domProps: { value: _vm.persona.password2 },
-                                on: {
-                                  input: function($event) {
-                                    if ($event.target.composing) {
-                                      return
-                                    }
-                                    _vm.$set(
-                                      _vm.persona,
-                                      "password2",
                                       $event.target.value
                                     )
                                   }
@@ -48159,8 +48118,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.persona.tipo,
-                                      expression: "persona.tipo"
+                                      value: _vm.user.tipo,
+                                      expression: "user.tipo"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -48183,7 +48142,7 @@ var render = function() {
                                           return val
                                         })
                                       _vm.$set(
-                                        _vm.persona,
+                                        _vm.user,
                                         "tipo",
                                         $event.target.multiple
                                           ? $$selectedVal
@@ -48260,20 +48219,20 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.persona.name,
-                                    expression: "persona.name"
+                                    value: _vm.user.name,
+                                    expression: "user.name"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: { type: "text", id: "name" },
-                                domProps: { value: _vm.persona.name },
+                                domProps: { value: _vm.user.name },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.persona,
+                                      _vm.user,
                                       "name",
                                       $event.target.value
                                     )
@@ -48297,20 +48256,20 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.persona.email,
-                                    expression: "persona.email"
+                                    value: _vm.user.email,
+                                    expression: "user.email"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: { type: "text", id: "Correo" },
-                                domProps: { value: _vm.persona.email },
+                                domProps: { value: _vm.user.email },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.persona,
+                                      _vm.user,
                                       "email",
                                       $event.target.value
                                     )
@@ -48334,20 +48293,20 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.persona.password,
-                                    expression: "persona.password"
+                                    value: _vm.user.password,
+                                    expression: "user.password"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: { type: "password", id: "password" },
-                                domProps: { value: _vm.persona.password },
+                                domProps: { value: _vm.user.password },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.persona,
+                                      _vm.user,
                                       "password",
                                       $event.target.value
                                     )
@@ -48371,20 +48330,20 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.persona.password2,
-                                    expression: "persona.password2"
+                                    value: _vm.user.password2,
+                                    expression: "user.password2"
                                   }
                                 ],
                                 staticClass: "form-control",
                                 attrs: { type: "password", id: "password2" },
-                                domProps: { value: _vm.persona.password2 },
+                                domProps: { value: _vm.user.password2 },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.persona,
+                                      _vm.user,
                                       "password2",
                                       $event.target.value
                                     )
@@ -48410,8 +48369,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.persona.tipo,
-                                      expression: "persona.tipo"
+                                      value: _vm.user.tipo,
+                                      expression: "user.tipo"
                                     }
                                   ],
                                   staticClass: "form-control",
@@ -48434,7 +48393,7 @@ var render = function() {
                                           return val
                                         })
                                       _vm.$set(
-                                        _vm.persona,
+                                        _vm.user,
                                         "tipo",
                                         $event.target.multiple
                                           ? $$selectedVal
@@ -48472,7 +48431,7 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "tbody",
-                _vm._l(_vm.personas, function(i, index) {
+                _vm._l(_vm.users, function(i, index) {
                   return _c("tr", { key: index }, [
                     _c("td", [_vm._v(_vm._s(index + 1))]),
                     _vm._v(" "),
