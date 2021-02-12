@@ -11,7 +11,21 @@ Vue.use(VueSweetalert2);
 
 
 import VueRouter from 'vue-router'
-Vue.use(VueRouter)
+Vue.use(VueRouter);
+
+
+/*-Vue.use(require('vue-moment'));
+
+import VueToast from 'vue-toast-notification';
+// Import one of available themes
+import 'vue-toast-notification/dist/theme-default.css';
+import 'vue-toast-notification/dist/theme-sugar.css';
+
+
+Vue.use(VueToast);*/
+
+
+
 
 import honme from './components/ExampleComponent';
 import requisitos from './components/Requisito';

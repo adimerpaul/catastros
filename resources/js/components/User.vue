@@ -135,6 +135,45 @@
 
 
 
+                        <div class="modal fade" id="pass" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" >Modificar password</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form @submit.prevent="passact">
+                                            <div class="form-group row">
+                                                <label for="password" class="col-sm-3 col-form-label">Password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" v-model="user.password" class="form-control" id="password" placeholder="Password" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="password2" class="col-sm-3 col-form-label">Repetir password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" v-model="user.password2" class="form-control" id="password2" placeholder="Repetir password" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-trash"></i> Cancelar</button>
+                                                <button type="submit" :disabled="activado" class="btn btn-warning"><i class="fa fa-save"></i> Modificar password</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+
                      <table class="table">
                             <thead>
                                 <tr>
@@ -192,6 +231,21 @@
                     this.users=res.data;
                 })
             },
+
+            passact(){
+                axios.post('/user/'+this.user.id,this.user).then(res=>{
+                    // this.misdatos();
+                    $('#pass').modal('hide');
+                })
+            },
+
+             pass(i){
+                $('#pass').modal('show');
+                this.dato=i;
+            },
+
+
+
             eliminar(id){
                 if(confirm('Seguro desea eliminar?')){
                     axios.delete('/user/'+id).then(res=>{
@@ -212,7 +266,21 @@
             },
             crear(){
                 this.user={};
+            },
+
+computed:{
+            activado:function(){
+                if(this.user.password==this.user.password2){
+                    return false;
+                }else{
+                    return true;
+                }
             }
+        }
+
+
+
+
         }
     }
 </script>
