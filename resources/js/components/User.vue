@@ -71,14 +71,14 @@
                                                 <div class="col-sm-8">
                                                 <input type="text" v-model="user.email" class="form-control" id="Correo">
                                                 </div>
-                                                <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
+                                              <!--  <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
                                                 <div class="col-sm-8">
                                                 <input type="password" v-model="user.password" class="form-control" id="password">
                                                 </div>
                                                 <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
                                                 <div class="col-sm-8">
                                                 <input type="password" v-model="user.password2" class="form-control" id="password2">
-                                                </div>
+                                                </div>-->
                                                 
                                                 <label for="tipo" class="col-sm-3 col-form-label">Tipo</label>
                                                 <div class="col-sm-8">
@@ -98,6 +98,43 @@
                             </div>
                         </div>
            
+ 
+  <div class="modal fade" id="password" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" >Modificar password</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form @submit.prevent="passact">
+                                            <div class="form-group row">
+                                                <label for="password" class="col-sm-3 col-form-label">Password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" v-model="user.password" class="form-control" id="password" placeholder="Password" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="password2" class="col-sm-3 col-form-label">Repetir password</label>
+                                                <div class="col-sm-9">
+                                                    <input type="password" v-model="user.password2" class="form-control" id="password2" placeholder="Repetir password" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-trash"></i> Cancelar</button>
+                                                <button type="submit" :disabled="activado" class="btn btn-warning"><i class="fa fa-save"></i> Modificar password</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
                      <table class="table">
                             <thead>
                                 <tr>
@@ -111,7 +148,7 @@
                             <tbody>
                                 <tr v-for="(i,index) in users" :key="index">
                                     <td>{{index+1}}</td>
-                                    <td>{{i.nombre}}</td>
+                                    <td>{{i.name}}</td>
                                     <td>{{i.tipo}}</td>
                                     <td>{{i.email}}</td>
                                     <td>
