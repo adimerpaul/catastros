@@ -2278,6 +2278,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
       var text = i.nombre;
       var t2 = i.descripcion;
+      if (t2 == null) t2 = '';
       doc.text(text, pageWidth / 2, 3, 'center');
       doc.text(t2, pageWidth / 2, 4, 'center'); //doc.autoTable({ html: '#table' })
       // Or use javascript directly:
