@@ -21,7 +21,7 @@
                                         <form @submit.prevent="guardar">
                                             <div class="form">
                                                 <div class="field-wrapper input">
-                                                    <label for="nom">Nombre Tramite</label>                                                    
+                                                    <label for="nom">Nombre Tramite</label>
                                                     <input type="text" class="form-control" id="nom" v-model="requisito.nombre">
                                                 </div>
                                                 <div class="field-wrapper input">
@@ -53,7 +53,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
-                                                
+
                                                 <button v-if="guar" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guargar Datos</button>
                                                 <button v-else class="btn btn-success" type="button" disabled>
                                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -75,7 +75,7 @@
                                         <form @submit.prevent="update">
 <div class="form">
                                                 <div class="field-wrapper input">
-                                                    <label for="nom">Nombre Tramite</label>                                                    
+                                                    <label for="nom">Nombre Tramite</label>
                                                     <input type="text" class="form-control" id="nom" v-model="requisito.nombre">
                                                 </div>
                                                 <div class="field-wrapper input">
@@ -132,7 +132,7 @@
                                     <td>
                                         <ul>
                                             <li v-for="(d,index) in i.detalles" :key="index" >{{d.nombre}}</li>
-                                        </ul>                                
+                                        </ul>
 
                                     </td>
                                     <td>
@@ -141,7 +141,7 @@
                                             <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
                                             <button class="btn btn-info btn-sm" @click="imprimir(i)"><i class="fa fa-print"></i></button>
                                         </div>
-                                        
+
                                     </td>
                                 </tr>
                             </tbody>
@@ -156,7 +156,7 @@
 <script>
     const axios=require('axios');
     import jsPDF from 'jspdf'
-    
+
     import 'jspdf-autotable'
 
     export default {
@@ -188,6 +188,7 @@
                 var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
                 var text=i.nombre;
                 var t2=i.descripcion;
+                if (t2==null)t2='';
                 doc.text(text,pageWidth/2,3,'center');
                 doc.text(t2, pageWidth/2,4,'center');
                 //doc.autoTable({ html: '#table' })
@@ -268,7 +269,7 @@
             update(){
                 axios.put('/requisito/'+this.requisito.id, this.requisito).then(res=>{
                     $('#modificar').modal('hide');
-                    this.datos();                    
+                    this.datos();
                     this.requisito={};
                     this.$swal('Modificado','Guardado Correctamente','success');
                 })
