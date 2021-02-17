@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Unidad;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
-class UnidadController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class UnidadController extends Controller
      */
     public function index()
     {
-        //
+        return Unit::all();
     }
 
     /**
@@ -35,16 +35,19 @@ class UnidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $d=new Unit();
+        $d->unidad=$request->unidad;
+        $d->detalles=$request->detalles;
+        $d->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Unidad  $unidad
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function show(Unidad $unidad)
+    public function show(Unit $unit)
     {
         //
     }
@@ -52,10 +55,10 @@ class UnidadController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Unidad  $unidad
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad $unidad)
+    public function edit(Unit $unit)
     {
         //
     }
@@ -64,22 +67,26 @@ class UnidadController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Unidad  $unidad
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unidad $unidad)
+    public function update(Request $request, $id)
     {
-        //
+        $d=Unit::find($id);
+        $d->unidad=$request->unidad;
+        $d->detalles=$request->detalles;
+        $d->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Unidad  $unidad
+     * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unidad $unidad)
+    public function destroy($id)
     {
-        //
+        $d=Unit::find($id);
+        $d->delete($id);
     }
 }

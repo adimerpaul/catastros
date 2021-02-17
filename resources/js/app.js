@@ -31,7 +31,7 @@ import honme from './components/ExampleComponent';
 import requisitos from './components/Requisito';
 import personas from './components/Persona';
 import users from './components/User';
-import unidads from './components/Unidad';
+import units from './components/Unit';
 
 
 
@@ -40,7 +40,7 @@ const routes = [
     { path: '/requisitos', component: requisitos },
     { path: '/personas', component: personas },
     { path: '/users', component: users },
-    { path: '/unidads', component: unidads }
+    { path: '/units', component: units }
 ]
 const router = new VueRouter({
     mode: 'history',
