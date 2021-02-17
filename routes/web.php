@@ -16,7 +16,7 @@ Route::get('/users', function () {
     return view('home');
 })->middleware('auth');
 
-Route::get('/unidades', function () {
+Route::get('/unidads', function () {
     return view('home');
 })->middleware('auth');
 
@@ -28,4 +28,4 @@ route::apiResource('/requisito',\App\Http\Controllers\RequisitoController::class
 route::apiResource('/persona',\App\Http\Controllers\PersonaController::class);
 route::apiResource('/user',\App\Http\Controllers\UserController::class);
 route::put('/passact/{id}',[\App\Http\Controllers\UserController::class,'passact']);
-//route::apiResource('/unidades',\App\Http\Controllers\UnidadController::class);
+route::apiResource('/unidad',\App\Http\Controllers\UnidadController::class);
