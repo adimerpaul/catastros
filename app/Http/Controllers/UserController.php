@@ -59,7 +59,7 @@ class UserController extends Controller
         $d->save();
     }
 
-    public function pass(Request $request, $id)
+    public function passact(Request $request, $id)
     {
         $d=User::find($id);
 //        $d->name=$request->name;
