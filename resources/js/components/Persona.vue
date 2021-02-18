@@ -141,10 +141,22 @@
         },
         methods:{
             guardar(){
+                this.guar=false;
                 axios.post('/persona',this.persona).then(res=>{
                     $('#registrar').modal('hide');
                     this.datos();
                     this.persona={};
+                    this.$swal('Registro','exitoso','success');
+                    this.guar=true;
+                }).catch(e=>{
+                    //this.$swal('Registro','exitoso','success');
+                    this.$swal({
+                        title: "Error",
+                        text: e.response.data.message,
+                        type: "error",
+                        // timer: 3000
+                    })
+                    this.guar=true;
                 })
             },
             datos(){
@@ -152,12 +164,33 @@
                     this.personas=res.data;
                 })
             },
-            eliminar(id){
-                if(confirm('Seguro desea eliminar?')){
-                    axios.delete('/persona/'+id).then(res=>{
-                        this.datos();
-                    });
-                }
+             eliminar(id){
+                this.$swal({
+                    title: 'Estas seguro?',
+                    text: "No podras revertir el proceso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Hazlo!',
+                    cancelButtonText: 'No.'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete('/persona/'+id).then(res=>{
+                            this.datos();
+                            this.$swal('Eliminado','Correctamente','success');
+                        }).catch(e=>{
+                            //this.$swal('Registro','exitoso','success');
+                            this.$swal({
+                                title: "Error",
+                                text: e.response.data.message,
+                                type: "error",
+                                // timer: 3000
+                            })
+                            this.guar=true;
+                        })
+                    }
+                })
             },
             actualizar(i){
                 this.persona=i;
@@ -168,6 +201,7 @@
                     $('#modificar').modal('hide');
                     this.datos();
                     this.persona={};
+                    this.$swal('Modificado','Guardado Correctamente','success');
                 })
             },
             crear(){

@@ -111,10 +111,22 @@
         },
         methods:{
             guardar(){
+                this.guar=false;
                 axios.post('/unit',this.unit).then(res=>{
                     $('#registrar').modal('hide');
                     this.datos();
                     this.unit={};
+                    this.$swal('Registro','exitoso','success');
+                    this.guar=true;
+                }).catch(e=>{
+                    //this.$swal('Registro','exitoso','success');
+                    this.$swal({
+                        title: "Error",
+                        text: e.response.data.message,
+                        type: "error",
+                        // timer: 3000
+                    })
+                    this.guar=true;
                 })
             },
             datos(){
@@ -159,6 +171,7 @@
                     $('#modificar').modal('hide');
                     this.datos();
                     this.unit={};
+                    this.$swal('Modificado','Guardado Correctamente','success');
                 })
             },
             crear(){

@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/requisitos', function () {
-    return view(['home','admin']);
+    return view(['auth','admin']);
 })->middleware('auth');
 Route::get('/personas', function () {
     return view('home');
@@ -18,7 +18,7 @@ Route::get('/users', function () {
 
 Route::get('/units', function () {
     return view('home');
-})->middleware(['home','admin']);
+})->middleware(['auth','admin']);
 
 Route::get('/documentos', function () {
     return view('home');

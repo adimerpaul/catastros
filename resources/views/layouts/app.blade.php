@@ -39,7 +39,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @auth
                         <router-link
                             to="/home"
                             v-slot="{ href, route, navigate, isActive, isExactActive }"
@@ -64,7 +64,7 @@
                         </router-link>
 
                        
-                        @if (Auth::user()->tipo=='Admin')
+                       @if (Auth::user()->tipo=='Admin')
                             <router-link
                                 to="/users"
                                 v-slot="{ href, route, navigate, isActive, isExactActive }">
@@ -107,6 +107,7 @@
                                 </a>
                             </li>
                         </router-link>
+                        @endauth 
                     </ul>
                     
 
