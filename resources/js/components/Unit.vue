@@ -121,12 +121,33 @@
                     this.units=res.data;
                 })
             },
-            eliminar(id){
-                if(confirm('Seguro desea eliminar?')){
-                    axios.delete('/unit/'+id).then(res=>{
-                        this.datos();
-                    });
-                }
+           eliminar(id){
+                this.$swal({
+                    title: 'Estas seguro?',
+                    text: "No podras revertir el proceso!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Si, Hazlo!',
+                    cancelButtonText: 'No.'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        axios.delete('/unit/'+id).then(res=>{
+                            this.datos();
+                            this.$swal('Eliminado','Unidad Eliminado','success');
+                        }).catch(e=>{
+                            //this.$swal('Registro','exitoso','success');
+                            this.$swal({
+                                title: "Error",
+                                text: e.response.data.message,
+                                type: "error",
+                                // timer: 3000
+                            })
+                            this.guar=true;
+                        })
+                    }
+                })
             },
             actualizar(i){
                 this.unit=i;
