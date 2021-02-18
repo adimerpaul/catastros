@@ -100,6 +100,7 @@
                                     <th>CI</th>
                                     <th>Celular</th>
                                     <th>Direccion</th>
+                                    <th>Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -24,6 +24,7 @@
                                                 <div class="col-sm-8">
                                                 <input type="text" v-model="unit.unidad" class="form-control" id="unidad" placeholder="Nombre de unidad">
                                                 </div>
+                                               
                                                 <label for="detalles" class="col-sm-3 col-form-label">Detalles</label>
                                                 <div class="col-sm-8">
                                                 <input type="text" v-model="unit.detalles" class="form-control" id="detalles" placeholder="detalles">
