@@ -3,11 +3,11 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-success text-white">REGISTRO</div>
+                    <div class="card-header bg-success text-white"> <i class="fa fa-user"></i> Control Personas</div>
                     <div class="card-body">
                         <!-- Button trigger modal -->
-                        <button type="button" @click="crear" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registrar">
-                           <i class="fa fa-plus"></i> REGISTRO NUEVO
+                        <button type="button" @click="crear" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#registrar">
+                           <i class="fa fa-plus-circle"></i> Crear persona 
                         </button>
 
                         <!-- Modal -->

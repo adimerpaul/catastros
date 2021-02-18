@@ -6,7 +6,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/requisitos', function () {
-    return view('home');
+    return view(['home','admin']);
 })->middleware('auth');
 Route::get('/personas', function () {
     return view('home');
@@ -14,12 +14,15 @@ Route::get('/personas', function () {
 
 Route::get('/users', function () {
     return view('home');
-})->middleware('auth');
+})->middleware(['auth','admin']);
 
 Route::get('/units', function () {
     return view('home');
-})->middleware('auth');
+})->middleware(['home','admin']);
 
+Route::get('/documentos', function () {
+    return view('home');
+})->middleware('auth');
 
 Auth::routes();
 
@@ -29,4 +32,6 @@ route::apiResource('/persona',\App\Http\Controllers\PersonaController::class);
 route::apiResource('/user',\App\Http\Controllers\UserController::class);
 route::put('/passact/{id}',[\App\Http\Controllers\UserController::class,'passact']);
 route::apiResource('/unit',\App\Http\Controllers\UnitController::class);
+
+Route::apiResource('/documento',\App\Http\Controllers\DocumentoController::class);
 //route::apiResource('/unidad',\App\Http\Controllers\UnidadController::class);

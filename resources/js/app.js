@@ -32,6 +32,7 @@ import requisitos from './components/Requisito';
 import personas from './components/Persona';
 import users from './components/User';
 import units from './components/Unit';
+import documentos from './components/Documento';
 
 
 
@@ -40,7 +41,8 @@ const routes = [
     { path: '/requisitos', component: requisitos },
     { path: '/personas', component: personas },
     { path: '/users', component: users },
-    { path: '/units', component: units }
+    { path: '/units', component: units },
+    { path: '/documentos', component: documentos }
 ]
 const router = new VueRouter({
     mode: 'history',

@@ -27,10 +27,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                <a class="navbar-brand" href="{{ url('/home') }}">
+                    <img src="img/gamo.png " width="100" class="img-fluid" alt="Responsive image">
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -63,36 +63,52 @@
                             </li>
                         </router-link>
 
-                        <router-link
-                            to="/requisitos"
-                            v-slot="{ href, route, navigate, isActive, isExactActive }">
-                            <li class="nav-item">
-                                <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="fa fa-clipboard"></i> Requisitos
+                       
+                        @if (Auth::user()->tipo=='Admin')
+                            <router-link
+                                to="/users"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }">
+                                <li class="nav-item">
+                                    <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                        <i class="fa fa-user-plus"></i> Usuarios
+                                    </a>
+                                </li>
+                            </router-link>    
+                            <router-link
+                                to="/requisitos"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }">
+                                <li class="nav-item">
+                                    <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                        <i class="fa fa-clipboard"></i> Requisitos
 
-                                </a>
-                            </li>
-                        </router-link>
-                        <router-link
-                            to="/users"
-                            v-slot="{ href, route, navigate, isActive, isExactActive }">
-                            <li class="nav-item">
-                                <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="fa fa-user-plus"></i> Usuarios
-                                </a>
-                            </li>
-                        </router-link>
+                                    </a>
+                                </li>
+                            </router-link>
+                            <router-link
+                                to="/units"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }">
+                                <li class="nav-item">
+                                    <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                        <i class="fa fa-sitemap"></i> Unidades
+                                    </a>
+                                </li>
+                            </router-link>
+                        @endif
+                        
 
+                        
                         <router-link
-                            to="/units"
+                            to="/documentos"
                             v-slot="{ href, route, navigate, isActive, isExactActive }">
                             <li class="nav-item">
                                 <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="fa fa-sitemap"></i> Unidades
+                                    <i class="fas fa-clipboard-check"></i> Documentos
+
                                 </a>
                             </li>
                         </router-link>
                     </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

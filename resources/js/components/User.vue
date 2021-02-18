@@ -90,7 +90,7 @@
                                                 <div class="col-sm-8">
                                                     <select name="tipo" v-model="user.tipo" id="tipo2" class="form-control" required>
                                                         <option value="Recepcionista">Recepcionista</option>
-                                                        <option value="ADMIN">Admin</option>
+                                                        <option value="Admin">Admin</option>
                                                     </select>
                                                 </div>
                                             </div>

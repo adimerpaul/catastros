@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Persona;
+use App\Models\Documento;
 use Illuminate\Http\Request;
 
-class PersonaController extends Controller
+class DocumentoController extends Controller
 {
-   /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Persona::all();
+        return Documento::all();
     }
 
     /**
@@ -35,34 +35,32 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        $d=new Persona();
+        $d=new Documento();
         $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
         $d->ci=$request->ci;
-        $d->celular=$request->celular;
-        $d->direccion=$request->direccion;
+        $d->unidad=$request->unidad;
+        $d->estado=$request->estado;
         $d->save();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Persona  $persona
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function show($ci)
+    public function show(Documento $documento)
     {
-        $p=Persona::where('ci',$ci)->first();
-        return $p;
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Persona  $persona
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
-    public function edit(Persona $persona)
+    public function edit(Documento $documento)
     {
         //
     }
@@ -71,29 +69,28 @@ class PersonaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Persona $persona
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $d=Persona::find($id);
+        $d=Documento::find($id);
         $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
         $d->ci=$request->ci;
-        $d->celular=$request->celular;
-        $d->direccion=$request->direccion;
+        $d->unidad=$request->unidad;
+        $d->estado=$request->estado;
         $d->save();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Persona  $persona
+     * @param  \App\Models\Documento  $documento
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $d=Persona::find($id);
-        $d->delete($id);
+        $d=Documento::find($id);
+        $d->delete();
     }
 }
