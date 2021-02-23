@@ -2253,12 +2253,27 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     guardar: function guardar() {
       var _this = this;
 
+      this.guar = false;
       axios.post('/persona', this.persona).then(function (res) {
         $('#registrar').modal('hide');
 
         _this.datos();
 
         _this.persona = {};
+
+        _this.$swal('Registro', 'exitoso', 'success');
+
+        _this.guar = true;
+      })["catch"](function (e) {
+        //this.$swal('Registro','exitoso','success');
+        _this.$swal({
+          title: "Error",
+          text: e.response.data.message,
+          type: "error" // timer: 3000
+
+        });
+
+        _this.guar = true;
       });
     },
     datos: function datos() {
@@ -2271,11 +2286,34 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     eliminar: function eliminar(id) {
       var _this3 = this;
 
-      if (confirm('Seguro desea eliminar?')) {
-        axios["delete"]('/persona/' + id).then(function (res) {
-          _this3.datos();
-        });
-      }
+      this.$swal({
+        title: 'Estas seguro?',
+        text: "No podras revertir el proceso!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, Hazlo!',
+        cancelButtonText: 'No.'
+      }).then(function (result) {
+        if (result.isConfirmed) {
+          axios["delete"]('/persona/' + id).then(function (res) {
+            _this3.datos();
+
+            _this3.$swal('Eliminado', 'Correctamente', 'success');
+          })["catch"](function (e) {
+            //this.$swal('Registro','exitoso','success');
+            _this3.$swal({
+              title: "Error",
+              text: e.response.data.message,
+              type: "error" // timer: 3000
+
+            });
+
+            _this3.guar = true;
+          });
+        }
+      });
     },
     actualizar: function actualizar(i) {
       this.persona = i;
@@ -2290,6 +2328,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this4.datos();
 
         _this4.persona = {};
+
+        _this4.$swal('Modificado', 'Guardado Correctamente', 'success');
       });
     },
     crear: function crear() {
@@ -2757,12 +2797,27 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
     guardar: function guardar() {
       var _this = this;
 
+      this.guar = false;
       axios.post('/unit', this.unit).then(function (res) {
         $('#registrar').modal('hide');
 
         _this.datos();
 
         _this.unit = {};
+
+        _this.$swal('Registro', 'exitoso', 'success');
+
+        _this.guar = true;
+      })["catch"](function (e) {
+        //this.$swal('Registro','exitoso','success');
+        _this.$swal({
+          title: "Error",
+          text: e.response.data.message,
+          type: "error" // timer: 3000
+
+        });
+
+        _this.guar = true;
       });
     },
     datos: function datos() {
@@ -2817,6 +2872,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         _this4.datos();
 
         _this4.unit = {};
+
+        _this4.$swal('Modificado', 'Guardado Correctamente', 'success');
       });
     },
     crear: function crear() {
