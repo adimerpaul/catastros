@@ -35,16 +35,22 @@
                                                 <div class="col-sm-8">
                                                <input type="password" v-model="user.password" class="form-control" id="password" placeholder="password">
                                                 </div>
-                                                <label for="password2" class="col-sm-3 col-form-label">Repetir C</label>
+                                                <label for="password2" class="col-sm-3 col-form-label">Repetir C.</label>
                                                 <div class="col-sm-8">
                                                 <input type="password" v-model="user.password2" class="form-control" id="password2" placeholder="Repetir password">
                                                 </div>
                                                 <label for="tipo" class="col-sm-3 col-form-label">Tipo</label>
                                                 <div class="col-sm-8">
                                                 <select name="tipo" v-model="user.tipo" id="tipo" class="form-control" required>
-                                                <option value="Recepcionista">Recepcionista</option>
-                                                <option value="Admin">Admin</option>
+                                                    <option value="Recepcionista">Recepcionista</option>
+                                                    <option value="Admin">Admin</option>
                                                 </select>
+                                                </div>
+                                                <label for="tipo2" class="col-sm-3 col-form-label">Unidad</label>
+                                                <div class="col-sm-8">
+                                                    <select name="tipo" v-model="user.unit_id" id="tipo2" class="form-control" required>
+                                                        <option v-for="(i,index) in units" :key="index" :value="i.id">{{i.unidad}}</option>
+                                                    </select>
                                                 </div>
                                     
                                             <div class="modal-footer">
@@ -91,6 +97,13 @@
                                                     <select name="tipo" v-model="user.tipo" id="tipo2" class="form-control" required>
                                                         <option value="Recepcionista">Recepcionista</option>
                                                         <option value="Admin">Admin</option>
+                                                    </select>
+                                                </div>
+                                                 <label for="tipo2" class="col-sm-3 col-form-label">Unidad</label>
+                                                <div class="col-sm-8">
+                                                    <select name="tipo" v-model="user.unit_id" id="tipo2" class="form-control" required>
+                                                       <!-- <option value="Recepcionista">Recepcionista</option>-->
+                                                        <option v-for="(i,index) in units" :key="index" :value="i.id">{{i.unidad}}</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -150,6 +163,7 @@
                                     <th>Nombre</th>
                                     <th>Tipo</th>
                                     <th>Email</th>
+                                    <th>Unidad</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -159,6 +173,7 @@
                                     <td>{{i.name}}</td>
                                     <td>{{i.tipo}}</td>
                                     <td>{{i.email}}</td>
+                                    <td>{{i.unit.unidad}}</td>
                                     <td>
                                         <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
                                         <button class="btn btn-dark btn-sm p-1" @click="pass(i)"><i class="fa fa-key"></i></button>
@@ -180,12 +195,16 @@
         data(){
             return {
                 user:{},
-                users:[]
+                users:[],
+                units:[],
             }
         },
         mounted() {
-            console.log('Component mounted.');
+            //console.log('Component mounted.');
             this.datos();
+            axios.get('/unit').then(res=>{
+                    this.units=res.data;
+                })
         },
         methods:{
             guardar(){

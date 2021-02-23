@@ -3104,71 +3104,92 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       user: {},
-      users: []
+      users: [],
+      units: []
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    //console.log('Component mounted.');
     this.datos();
+    axios.get('/unit').then(function (res) {
+      _this.units = res.data;
+    });
   },
   methods: {
     guardar: function guardar() {
-      var _this = this;
+      var _this2 = this;
 
       axios.post('/user', this.user).then(function (res) {
         $('#registrar').modal('hide');
 
-        _this.datos();
+        _this2.datos();
 
-        _this.user = {};
+        _this2.user = {};
 
-        _this.$swal('Registro', 'exitoso', 'success');
+        _this2.$swal('Registro', 'exitoso', 'success');
       })["catch"](function (e) {
         //this.$swal('Registro','exitoso','success');
-        _this.$swal({
+        _this2.$swal({
           title: "Error",
           text: e.response.data.message,
           type: "error" // timer: 3000
 
         });
 
-        _this.guar = true;
+        _this2.guar = true;
       });
     },
     datos: function datos() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get('/user').then(function (res) {
-        _this2.users = res.data;
+        _this3.users = res.data;
       });
     },
     passact: function passact() {
-      var _this3 = this;
+      var _this4 = this;
 
       //console.log(this.user);
       axios.put('/passact/' + this.user.id, this.user).then(function (res) {
-        _this3.datos();
+        _this4.datos();
 
-        _this3.user = {};
+        _this4.user = {};
         $('#modalpass').modal('hide');
 
-        _this3.$swal('Contraseña actualizado', 'exitoso', 'success');
+        _this4.$swal('Contraseña actualizado', 'exitoso', 'success');
       })["catch"](function (e) {
         //this.$swal('Registro','exitoso','success');
-        _this3.$swal({
+        _this4.$swal({
           title: "Error",
           text: e.response.data.message,
           type: "error" // timer: 3000
 
         });
 
-        _this3.guar = true;
+        _this4.guar = true;
       });
     },
     pass: function pass(i) {
@@ -3176,7 +3197,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.user = i;
     },
     eliminar: function eliminar(id) {
-      var _this4 = this;
+      var _this5 = this;
 
       this.$swal({
         title: 'Estas seguro?',
@@ -3190,19 +3211,19 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }).then(function (result) {
         if (result.isConfirmed) {
           axios["delete"]('/user/' + id).then(function (res) {
-            _this4.datos();
+            _this5.datos();
 
-            _this4.$swal('Eliminado', 'Tramite Eliminado', 'success');
+            _this5.$swal('Eliminado', 'Tramite Eliminado', 'success');
           })["catch"](function (e) {
             //this.$swal('Registro','exitoso','success');
-            _this4.$swal({
+            _this5.$swal({
               title: "Error",
               text: e.response.data.message,
               type: "error" // timer: 3000
 
             });
 
-            _this4.guar = true;
+            _this5.guar = true;
           });
         }
       });
@@ -3212,7 +3233,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       $('#modificar').modal('show');
     },
     update: function update() {
-      var _this5 = this;
+      var _this6 = this;
 
       console.log(this.user);
 
@@ -3220,21 +3241,21 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         axios.put('/user/' + this.user.id, this.user).then(function (res) {
           $('#modificar').modal('hide');
 
-          _this5.datos();
+          _this6.datos();
 
-          _this5.user = {};
+          _this6.user = {};
 
-          _this5.$swal('Actualizado', 'exitoso', 'success');
+          _this6.$swal('Actualizado', 'exitoso', 'success');
         })["catch"](function (e) {
           //this.$swal('Registro','exitoso','success');
-          _this5.$swal({
+          _this6.$swal({
             title: "Error",
             text: e.response.data.message,
             type: "error" // timer: 3000
 
           });
 
-          _this5.guar = true;
+          _this6.guar = true;
         });
       }
     },
@@ -49986,7 +50007,7 @@ var render = function() {
                                 staticClass: "col-sm-3 col-form-label",
                                 attrs: { for: "password2" }
                               },
-                              [_vm._v("Repetir C")]
+                              [_vm._v("Repetir C.")]
                             ),
                             _vm._v(" "),
                             _c("div", { staticClass: "col-sm-8" }, [
@@ -50082,6 +50103,67 @@ var render = function() {
                                     _vm._v("Admin")
                                   ])
                                 ]
+                              )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-sm-3 col-form-label",
+                                attrs: { for: "tipo2" }
+                              },
+                              [_vm._v("Unidad")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-8" }, [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.user.unit_id,
+                                      expression: "user.unit_id"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "tipo",
+                                    id: "tipo2",
+                                    required: ""
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.user,
+                                        "unit_id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                _vm._l(_vm.units, function(i, index) {
+                                  return _c(
+                                    "option",
+                                    { key: index, domProps: { value: i.id } },
+                                    [_vm._v(_vm._s(i.unidad))]
+                                  )
+                                }),
+                                0
                               )
                             ]),
                             _vm._v(" "),
@@ -50260,6 +50342,67 @@ var render = function() {
                                   ])
                                 ]
                               )
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "label",
+                              {
+                                staticClass: "col-sm-3 col-form-label",
+                                attrs: { for: "tipo2" }
+                              },
+                              [_vm._v("Unidad")]
+                            ),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "col-sm-8" }, [
+                              _c(
+                                "select",
+                                {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.user.unit_id,
+                                      expression: "user.unit_id"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    name: "tipo",
+                                    id: "tipo2",
+                                    required: ""
+                                  },
+                                  on: {
+                                    change: function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.$set(
+                                        _vm.user,
+                                        "unit_id",
+                                        $event.target.multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      )
+                                    }
+                                  }
+                                },
+                                _vm._l(_vm.units, function(i, index) {
+                                  return _c(
+                                    "option",
+                                    { key: index, domProps: { value: i.id } },
+                                    [_vm._v(_vm._s(i.unidad))]
+                                  )
+                                }),
+                                0
+                              )
                             ])
                           ]),
                           _vm._v(" "),
@@ -50419,6 +50562,8 @@ var render = function() {
                     _c("td", [_vm._v(_vm._s(i.tipo))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(i.email))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(i.unit.unidad))]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -50619,6 +50764,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Tipo")]),
         _vm._v(" "),
         _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Unidad")]),
         _vm._v(" "),
         _c("th", [_vm._v("Opciones")])
       ])

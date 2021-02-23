@@ -21,6 +21,7 @@ class User extends Authenticatable
         'tipo',
         'email',
         'password',
+        'unit_id'
     ];
 
     /**
@@ -41,4 +42,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 }

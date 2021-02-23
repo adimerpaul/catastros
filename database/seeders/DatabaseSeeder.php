@@ -27,12 +27,14 @@ class DatabaseSeeder extends Seeder
             'name'=>'admin',
             'tipo'=>'Admin',
             'email'=>'admin@test.com',
+            'unit_id'=>'1',
             'password'=>Hash::make('admin')]
         );
         DB::table('users')->insert([
             'name'=>'re',
             'tipo'=>'Recepcionista',
             'email'=>'re@test.com',
+            'unit_id'=>'1',
             'password'=>Hash::make('re')]
         );
         

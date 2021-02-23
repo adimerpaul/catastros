@@ -11,7 +11,7 @@ class UserController extends Controller
     public function index()
     {
 //        return User::where('id','!=',1)->get();
-        return User::all();
+        return User::with('unit')->get();
     }
 
     /**
@@ -26,6 +26,7 @@ class UserController extends Controller
         $d->name=$request->name;
         $d->email=$request->email;
         $d->tipo=$request->tipo;
+        $d->unit_id=$request->unit_id;
         $d->password=Hash::make( $request->password);
         $d->save();
 
@@ -55,6 +56,7 @@ class UserController extends Controller
         $d->name=$request->name;
         $d->email=$request->email;
         $d->tipo=$request->tipo;
+        $d->unit_id=$request->unit_id;
 //        $d->password=Hash::make( $request->password);
         $d->save();
     }
