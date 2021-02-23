@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             RequisitoSeeder::class,
             DetalleSeeder::class,
             PersonaSeeder::class,
+            UnitSeeder::class,
+            DocumentoSeeder::class,
         ]);
         // \App\Models\User::factory(10)->create();
         DB::table('users')->insert([

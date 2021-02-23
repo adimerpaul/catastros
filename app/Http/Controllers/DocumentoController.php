@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Documento;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class DocumentoController extends Controller
@@ -14,7 +15,7 @@ class DocumentoController extends Controller
      */
     public function index()
     {
-        return Documento::all();
+        return Documento::with('persona')->with('unit')->with('requisito')->WhereDate('created_at',now())->get();
     }
 
     /**
@@ -35,11 +36,40 @@ class DocumentoController extends Controller
      */
     public function store(Request $request)
     {
+        $persona=Persona::where('ci',$request->ci)->get();
+        if($persona->count()==0){
+            $p=new Persona();
+            $p->ci=$request->ci;
+            $p->nombre=$request->nombre;
+            $p->apellidos=$request->apellidos;
+            $p->save();
+            $persona_id=$p->id;
+        }else{
+            $p=Persona::find($persona[0]->id);
+            //$p->ci=$request->ci;
+            $p->nombre=$request->nombre;
+            $p->apellidos=$request->apellidos;
+            $p->save();
+            $persona_id=$persona[0]->id;
+        }
+        
         $d=new Documento();
-        $d->nombre=$request->nombre;
+        /*
         $d->ci=$request->ci;
+        $d->nombre=$request->nombre;
+        $d->apellidos=$request->apellidos;
+        $d->nroHojas=$request->nroHojas;
         $d->unidad=$request->unidad;
-        $d->estado=$request->estado;
+        $d->tipoTra=$request->tipoTra;
+
+        */
+        $d->codigounidad=$request->codigounidad;
+        $d->instruccion=$request->instruccion;
+        $d->nroHojas=$request->nroHojas;
+        $d->persona_id=$persona_id;
+        $d->unit_id=$request->unit_id;
+        $d->requisito_id=$request->requisito_id;
+
         $d->save();
     }
 
@@ -74,11 +104,14 @@ class DocumentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $d=Documento::find($id);
-        $d->nombre=$request->nombre;
+        $d=Documento::find($id);        
         $d->ci=$request->ci;
+        $d->nombre=$request->nombre;
+        $d->apellidos=$request->apellidos;
+        $d->nroHojas=$request->nroHojas;
         $d->unidad=$request->unidad;
-        $d->estado=$request->estado;
+        $d->tipoTra=$request->tipoTra;
+        
         $d->save();
     }
 

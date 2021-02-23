@@ -15,10 +15,16 @@ class CreateDocumentosTable extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->string('ci');
-            $table->string('unidad');
-            $table->string('tipoTra');
+            $table->string('codigounidad');
+            $table->string('instruccion')->nullable();
+            //$table->string('referencia');
+            $table->integer('nroHojas');
+            $table->unsignedBigInteger('persona_id');
+            $table->foreign('persona_id')->references('id')->on('personas');
+            $table->unsignedBigInteger('unit_id');
+            $table->foreign('unit_id')->references('id')->on('units');
+            $table->unsignedBigInteger('requisito_id');
+            $table->foreign('requisito_id')->references('id')->on('requisitos');
             $table->timestamps();
         });
     }
