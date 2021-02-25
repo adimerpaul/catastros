@@ -1,0 +1,21 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "watch",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: watch",
+			"detail": "mix watch"
+		},
+		{
+			"type": "npm",
+			"script": "watch-poll",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: watch-poll",
+			"detail": "mix watch -- --watch-options-poll=1000"
+		}
+	]
+}

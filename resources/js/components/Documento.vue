@@ -14,8 +14,8 @@
                         <div class="modal fade" id="registrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Papeleo</h5>                                        
+                                    <div class="modal-header bg-primary text-white">
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Nuevo Papeleo</b></h5>                                        
                                     </div>
                                     <div class="modal-body">
                                         <form @submit.prevent="guardar">
@@ -92,6 +92,9 @@
                                 </div>
                             </div>
                         </div>
+
+
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -100,7 +103,8 @@
                                     <th>Nombre completo</th> 
                                     <th>Nro de Hojas</th>
                                     <th>Unidad</th>
-                                    <th>Sel Tramite</th>
+                                    <th>Tramite Realizado</th>
+                                    <th>Fecha</th>
                                     <th>Opciones</th>
                                 </tr>
                             </thead>
@@ -110,11 +114,13 @@
                                     <td>{{i.persona.ci}}</td>
                                     <td>{{i.persona.nombre}} {{i.persona.apellidos}}</td>              
                                     <td>{{i.nroHojas}}</td>
-                                    <td>{{i.unit.unidad}}</td>
-                                    <td>{{i.requisito.nombre}}</td>                                   
+                                    <td>{{i.unit.unidad}} <br><b>INSTRUCCION:</b> {{i.instruccion}}</td>
+                                    <td>{{i.requisito.nombre}}</td> 
+                                    <th>{{i.created_at}}</th>                                  
                                     <td>
                                         <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
                                         <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
+                                        <button class="btn btn-info btn-sm" @click="imprimir(i)"><i class="fa fa-print"></i></button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -128,6 +134,9 @@
 
 <script>
     const axios=require('axios');
+    import jsPDF from 'jspdf'
+    import 'jspdf-autotable'
+    import moment from 'moment'
     export default {
         data(){
             return {
@@ -147,8 +156,91 @@
         mounted() {
             //console.log('Component mounted.');
             this.datos();
+            axios.get('/requisito').then(res=>{
+                    //console.log(res.data);
+                    this.requisitos=res.data;
+                })
+
+                axios.get('/unit').then(res=>{
+                     console.log(res.data);
+                    this.units=res.data;
+                })
         },
         methods:{
+            imprimir (i) {
+                const doc = new jsPDF({
+                    orientation:"portrait",
+                    unit: "mm",
+                    format: [210,125]
+                })
+
+                // It can parse html:
+                // <table id="my-table"><!-- ... --></table>
+                var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+                var pageHeigth = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+                var text="GOBIERNO AUTONOMO MUNICIPAL DE ORURO";
+                var t1="HOJA DE TRAMITE";
+                var t2=i.codigounidad;
+                var t3=(i.nroHojas).toString();
+                var t4=moment(i.created_at).format('DD-MM-YYYY');
+                var t5="Procedencia: ";
+                var t6="Referencia: ";
+                doc.addImage("img/gamo1.jpg", "JPEG", 14,30,97,165);
+                doc.setFont("times","bold");
+                doc.setFontSize(10);
+                doc.text(text,pageWidth/2,6,'center');
+                doc.text(t1,19,15,'left');
+                doc.text("Registro No. " + t2,110,11,'right');
+                doc.text("Nro de Hojas: "+ t3,110,15,'right');
+                doc.text("Fecha de Ingreso: " + t4,110,19,'right');
+                doc.text(t5,16,24,'left');
+                doc.text(t6,16,29,'left');
+                let body=[];
+                let con=0;
+                let de='';
+                let aaa='';
+                let bbb='';
+                let instrucciones=['Urgente','Informe en el dia','Reuna antecedentes','Remita antecedentes','Instruya su ejecucion','Archive','Conteste Carta','Verificar y procesar'
+                ,'Efectue liquidacion','Remitase a la MAE','Informe','Su Atencion','',];
+                this.units.forEach(row => {
+                    
+                    body.push([con+1,row.unidad,de,aaa,instrucciones[con],bbb]);
+                    con++;
+                });
+                doc.autoTable({
+                
+                theme: 'plain',
+                tableLineColor: [0, 0, 0],
+                tableLineWidth: 0.1,
+                styles: {
+                    font: 'times',
+                    fontSize: '8',
+                    lineColor: [0, 0, 0],
+                    lineWidth: 0.1,
+                },
+                startY:30,
+                
+                head: [['#', 'UNIDAD','DE','A','INSTRUCCION','~']],
+                body:body,
+                })
+                doc.autoTable({
+                    theme: 'plain',
+                    tableLineColor: [0, 0, 0],
+                    tableLineWidth: 0.1,
+                    styles: {
+                        font: 'times',
+                        fontSize: '8',
+                        lineColor: [0, 0, 0],
+                        minCellHeight: 5,
+                    },
+                    startY:154,
+                    body:[['Para'],['Instrucciones Complementarias'],['                                                                                                FIRMA Y SELLO']
+                         ,['Para'],['Instrucciones Complementarias'],['                                                                                                FIRMA Y SELLO']],
+                })
+
+                doc.save('table.pdf')
+
+            },
             onChange(event) {
                 //console.log(event.target.value)
                 this.requisito = this.requisitos.find(  d => parseInt(d.id) === parseInt(event.target.value))
@@ -181,6 +273,7 @@
             guardar(){
                 //console.log();
                 //return false;
+                this.guar=false;
                 this.documento.ci=this.ci;
                 //this.documento.ci=this.ci;
                 //this.documento.ci=this.ci;
@@ -190,6 +283,8 @@
                     $('#registrar').modal('hide');
                     this.datos();
                     this.documento={};
+                    this.$swal('Registro','exitoso','success');
+                    this.guar=true;
                 })
             },
             datos(){
@@ -197,14 +292,7 @@
                     this.documentos=res.data;
                 })
 
-                axios.get('/requisito').then(res=>{
-                    //console.log(res.data);
-                    this.requisitos=res.data;
-                })
-
-                axios.get('/unit').then(res=>{
-                    this.units=res.data;
-                })
+                
                 
             },
             eliminar(id){

@@ -73,7 +73,7 @@
                                     </div>
                                     <div class="modal-body">
                                         <form @submit.prevent="update">
-<div class="form">
+                                            <div class="form">
                                                 <div class="field-wrapper input">
                                                     <label for="nom">Nombre Tramite</label>
                                                     <input type="text" class="form-control" id="nom" v-model="requisito.nombre">

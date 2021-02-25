@@ -104,13 +104,19 @@ class DocumentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $d=Documento::find($id);        
-        $d->ci=$request->ci;
-        $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
+        $persona=Persona::where('ci',$request->ci)->get();
+        if($persona->count()!=0){
+            $p->nombre=$request->nombre;
+            $p->apellidos=$request->apellidos;
+            $p->save();
+            $persona_id=$persona[0]->id;
+        }        
+        $d->codigounidad=$request->codigounidad;
+        $d->instruccion=$request->instruccion;
         $d->nroHojas=$request->nroHojas;
-        $d->unidad=$request->unidad;
-        $d->tipoTra=$request->tipoTra;
+        $d->persona_id=$persona_id;
+        $d->unit_id=$request->unit_id;
+        $d->requisito_id=$request->requisito_id;
         
         $d->save();
     }
