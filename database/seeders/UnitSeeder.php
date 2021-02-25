@@ -31,7 +31,7 @@ class UnitSeeder extends Seeder
                 'unidad'=>'DIRECCION Y DESARR. ECON.LOCAL'
             ],
             [
-                'unidad'=>'DEFENZA DEL CONSUMIDOR'
+                'unidad'=>'DEFENSA DEL CONSUMIDOR'
             ],
             [
                 'unidad'=>'MERCADOS'
