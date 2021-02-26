@@ -83,15 +83,7 @@
                                                 <div class="col-sm-8">
                                                 <input type="text" v-model="user.email" class="form-control" id="Correo">
                                                 </div>
-                                              <!--  <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
-                                                <div class="col-sm-8">
-                                                <input type="password" v-model="user.password" class="form-control" id="password">
-                                                </div>
-                                                <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
-                                                <div class="col-sm-8">
-                                                <input type="password" v-model="user.password2" class="form-control" id="password2">
-                                                </div>-->
-                                                
+                                                                                
                                                 <label for="tipo" class="col-sm-3 col-form-label">Tipo</label>
                                                 <div class="col-sm-8">
                                                     <select name="tipo" v-model="user.tipo" id="tipo2" class="form-control" required>
@@ -102,8 +94,7 @@
                                                  <label for="tipo2" class="col-sm-3 col-form-label">Unidad</label>
                                                 <div class="col-sm-8">
                                                     <select name="tipo" v-model="user.unit_id" id="tipo2" class="form-control" required>
-                                                       <!-- <option value="Recepcionista">Recepcionista</option>-->
-                                                        <option v-for="(i,index) in units" :key="index" :value="i.id">{{i.unidad}}</option>
+                                                    <option v-for="(i,index) in units" :key="index" :value="i.id">{{i.unidad}}</option>
                                                     </select>
                                                 </div>
                                             </div>
