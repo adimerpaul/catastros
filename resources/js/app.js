@@ -2,6 +2,7 @@
 require('./bootstrap');
 
 import Vue from "vue";
+Vue.use(require('vue-moment'));
 
 import VueSweetalert2 from 'vue-sweetalert2';
 

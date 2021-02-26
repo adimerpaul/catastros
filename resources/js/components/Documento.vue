@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-10">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header bg-success text-white"> <i class="fa fa-file"></i> Tramites</div>
                     <div class="card-body">
@@ -15,7 +15,7 @@
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
                                     <div class="modal-header bg-primary text-white">
-                                        <h5 class="modal-title" id="exampleModalLabel"><b>Nuevo Papeleo</b></h5>                                        
+                                        <h5 class="modal-title" id="exampleModalLabel"><b>Nuevo Papeleo</b></h5>
                                     </div>
                                     <div class="modal-body">
                                         <form @submit.prevent="guardar">
@@ -40,19 +40,19 @@
                                             </div>
                                             <div class="form-row">
                                                 <div class="form-group col-md-3">
-                                                    <label for="numH">Numero de Hojas</label>                                                    
+                                                    <label for="numH">Numero de Hojas</label>
                                                     <input type="number" class="form-control" id="numH" max="100" min="5" v-model="documento.nroHojas">
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for="codigounidad">Codigo unidad</label>                                                    
+                                                    <label for="codigounidad">Codigo unidad</label>
                                                     <input type="text" class="form-control" id="codigounidad" max="100" min="5" v-model="documento.codigounidad">
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="instruccion">instruccion</label>                                                    
+                                                    <label for="instruccion">instruccion</label>
                                                     <input type="text" class="form-control" id="instruccion" max="100" min="5" v-model="documento.instruccion">
                                                 </div>
                                             </div>
-                                            <div class="form-row">                                                
+                                            <div class="form-row">
                                                 <div class="form-group col-md-6">
                                                     <label for="unid">Unidad</label>
                                                     <select name="" id="unid" class="form-control" v-model="documento.unit_id" >
@@ -60,12 +60,12 @@
                                                     </select>
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <label for="tipoT">Tipo de Tramite</label>                                    
+                                                    <label for="tipoT">Tipo de Tramite</label>
                                                     <select name="" id="tipoT" class="form-control"  @change="onChange($event)" v-model="documento.requisito_id" >
                                                         <option v-for="(i,index) in requisitos"  :key="index" :value="i.id">{{i.nombre}}</option>
-                                                    </select>                                                    
-                                                </div>                           
-                                                
+                                                    </select>
+                                                </div>
+
                                             </div>
                                             <div class=" from mt-3 form-group row">
                                                 <div class="col-sm-2">Requisitos</div>
@@ -80,7 +80,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="fa fa-trash"></i> Cerrar</button>
-                                                
+
                                                 <button v-if="guar" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Guargar Datos</button>
                                                 <button v-else class="btn btn-success" type="button" disabled>
                                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -98,29 +98,31 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>Carnet de Identidad</th>
-                                    <th>Nombre completo</th> 
-                                    <th>Nro de Hojas</th>
-                                    <th>Unidad</th>
-                                    <th>Tramite Realizado</th>
-                                    <th>Fecha</th>
-                                    <th>Opciones</th>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Carnet de Identidad</th>
+                                    <th scope="col">Nombre completo</th>
+                                    <th scope="col">Nro de Hojas</th>
+                                    <th scope="col">Unidad</th>
+                                    <th scope="col">Tramite Realizado</th>
+                                    <th scope="col" style="width: 110px">Fecha</th>
+                                    <th scope="col">Opciones</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr v-for="(i,index) in documentos" :key="index">
-                                    <td>{{index+1}}</td>
+                                    <th scope="row">{{index+1}}</th>
                                     <td>{{i.persona.ci}}</td>
-                                    <td>{{i.persona.nombre}} {{i.persona.apellidos}}</td>              
+                                    <td>{{i.persona.nombre}} {{i.persona.apellidos}}</td>
                                     <td>{{i.nroHojas}}</td>
                                     <td>{{i.unit.unidad}} <br><b>INSTRUCCION:</b> {{i.instruccion}}</td>
-                                    <td>{{i.requisito.nombre}}</td> 
-                                    <th>{{i.created_at}}</th>                                  
+                                    <td>{{i.requisito.nombre}}</td>
+                                    <th>{{i.created_at| moment("YYYY-MM-DD")}} </th>
                                     <td>
-                                        <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>
-                                        <button class="btn btn-info btn-sm" @click="imprimir(i)"><i class="fa fa-print"></i></button>
+                                        <div class="btn-group">
+<!--                                            <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>-->
+<!--                                            <button class="btn btn-danger btn-sm" @click="eliminar(i.id)"><i class="fa fa-trash"></i></button>-->
+                                            <button class="btn btn-info btn-sm" @click="imprimir(i)"><i class="fa fa-print"></i></button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -203,12 +205,12 @@
                 let instrucciones=['Urgente','Informe en el dia','Reuna antecedentes','Remita antecedentes','Instruya su ejecucion','Archive','Conteste Carta','Verificar y procesar'
                 ,'Efectue liquidacion','Remitase a la MAE','Informe','Su Atencion','',];
                 this.units.forEach(row => {
-                    
+
                     body.push([con+1,row.unidad,de,aaa,instrucciones[con],bbb]);
                     con++;
                 });
                 doc.autoTable({
-                
+
                 theme: 'plain',
                 tableLineColor: [0, 0, 0],
                 tableLineWidth: 0.1,
@@ -219,7 +221,7 @@
                     lineWidth: 0.1,
                 },
                 startY:30,
-                
+
                 head: [['#', 'UNIDAD','DE','A','INSTRUCCION','~']],
                 body:body,
                 })
@@ -245,7 +247,7 @@
                 //console.log(event.target.value)
                 this.requisito = this.requisitos.find(  d => parseInt(d.id) === parseInt(event.target.value))
                  //console.log(this.requisito);
-                 
+
             },
             buscarci(){
                     //console.log(this.documento.ci);
@@ -259,12 +261,12 @@
                             }else{
                                 this.documento={};
                             }
-                            
+
                             //this.documento.apellidos=res.data.apellidos;
-                            
+
                         })
                     }
-                        
+
             },
             cerrar2d(){
 
@@ -292,8 +294,8 @@
                     this.documentos=res.data;
                 })
 
-                
-                
+
+
             },
             eliminar(id){
                 if(confirm('Seguro desea eliminar?')){
