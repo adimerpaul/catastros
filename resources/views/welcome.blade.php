@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Laravel</title>
     <link rel="stylesheet" href="css/estilos.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -15,6 +15,7 @@
         <nav>
             <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+            <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
             <a href="#">Acerca de</a>
             <a href="#">Contacto</a>
         </nav>
