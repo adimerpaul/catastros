@@ -45,7 +45,7 @@
                                                 </div>
                                                 <div class="form-group col-md-3">
                                                     <label for="codigounidad">Codigo unidad</label>
-                                                    <input type="text" class="form-control" id="codigounidad" max="100" min="5" v-model="documento.codigounidad">
+                                                    <input type="text" class="form-control" id="codigounidad" v-model="documento.codigounidad">
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <label for="instruccion">instruccion</label>
@@ -104,6 +104,7 @@
                                     <th scope="col">Nro de Hojas</th>
                                     <th scope="col">Unidad</th>
                                     <th scope="col">Tramite Realizado</th>
+                                    <th scope="col">Estado</th>
                                     <th scope="col" style="width: 110px">Fecha</th>
                                     <th scope="col">Opciones</th>
                                 </tr>
@@ -116,6 +117,7 @@
                                     <td>{{i.nroHojas}}</td>
                                     <td>{{i.unit.unidad}} <br><b>INSTRUCCION:</b> {{i.instruccion}}</td>
                                     <td>{{i.requisito.nombre}}</td>
+                                    <td>{{i.estado}}</td>
                                     <th>{{i.created_at| moment("YYYY-MM-DD")}} </th>
                                     <td>
                                         <div class="btn-group">
@@ -153,18 +155,21 @@
                 units:[],
                 guar:true,
                 persona:{},
+                codU: '',
+                cont:0
             }
         },
         mounted() {
-            //console.log('Component mounted.');
+            
             this.datos();
+            
             axios.get('/requisito').then(res=>{
                     //console.log(res.data);
                     this.requisitos=res.data;
                 })
 
                 axios.get('/unit').then(res=>{
-                     console.log(res.data);
+                     //console.log(res.data);
                     this.units=res.data;
                 })
         },
@@ -251,15 +256,17 @@
             },
             buscarci(){
                     //console.log(this.documento.ci);
+                    let cm=this;
                     if(this.ci!=''){
                         this.bu=true;
                         axios.get('/persona/'+this.ci).then(res=>{
                             this.bu=false;
                             if(res.data!=''){
-                                this.documento=res.data;
+                                //console.log(res.data);
+                                cm.documento.nombre=res.data.nombre;
+                                console.log(this.documento.nombre);
+                                cm.documento.apellidos=res.data.apellidos;
                                 //console.log(this.documento);
-                            }else{
-                                this.documento={};
                             }
 
                             //this.documento.apellidos=res.data.apellidos;
@@ -280,7 +287,7 @@
                 //this.documento.ci=this.ci;
                 //this.documento.ci=this.ci;
                 axios.post('/documento',this.documento).then(res=>{
-                    //console.log(res.data);
+                    console.log(res.data);
                     //return false;
                     $('#registrar').modal('hide');
                     this.datos();
@@ -293,9 +300,6 @@
                 axios.get('/documento').then(res=>{
                     this.documentos=res.data;
                 })
-
-
-
             },
             eliminar(id){
                 if(confirm('Seguro desea eliminar?')){
@@ -316,9 +320,14 @@
                 })
             },
             crear(){
-                this.documento={};
+               
                 this.ci='';
                 this.requisito={};
+                axios.get('/numero').then(res=>{                   
+                    this.documento={};
+                    this.documento.codigounidad=res.data;
+                })
+                
             }
         }
     }

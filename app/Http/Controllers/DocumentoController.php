@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Documento;
 use App\Models\Persona;
+use App\Models\Log;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class DocumentoController extends Controller
 {
@@ -54,23 +57,26 @@ class DocumentoController extends Controller
         }
         
         $d=new Documento();
-        /*
-        $d->ci=$request->ci;
-        $d->nombre=$request->nombre;
-        $d->apellidos=$request->apellidos;
-        $d->nroHojas=$request->nroHojas;
-        $d->unidad=$request->unidad;
-        $d->tipoTra=$request->tipoTra;
-
-        */
+        
         $d->codigounidad=$request->codigounidad;
         $d->instruccion=$request->instruccion;
         $d->nroHojas=$request->nroHojas;
         $d->persona_id=$persona_id;
-        $d->unit_id=$request->unit_id;
+        $d->unit_id=$request->unit_id;  
+        
+        $d->user_id=Auth::user()->id;
         $d->requisito_id=$request->requisito_id;
-
+        //return Auth::user()->id;
+        //exit;
         $d->save();
+        
+        
+        $l=new Log();
+        $l->documento_id=$d->id;
+        $l->user_id=Auth::user()->id;
+        $l->unit_id1=Auth::user()->unit_id;
+        $l->unit_id2=$request->unit_id;
+        $l->save();
     }
 
     /**
@@ -131,5 +137,10 @@ class DocumentoController extends Controller
     {
         $d=Documento::find($id);
         $d->delete();
+    }
+    public function numero(){
+        $wordlist = Documento::whereYear('created_at', now())->get();
+        $wordCount = $wordlist->count();
+        return $wordCount+1;
     }
 }
