@@ -121,7 +121,7 @@
                                 v-slot="{ href, route, navigate, isActive, isExactActive }">
                                 <li class="nav-item">
                                     <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                        <i class="fas fa-history"></i> Hitorial
+                                        <i class="fas fa-history"></i> Historial
                                     </a>
                                 </li>
                             </router-link>
