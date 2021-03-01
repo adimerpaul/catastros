@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             PersonaSeeder::class,
             UnitSeeder::class,
             DocumentoSeeder::class,
+            LogSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
         DB::table('users')->insert([
@@ -34,9 +35,16 @@ class DatabaseSeeder extends Seeder
             'name'=>'re',
             'tipo'=>'Recepcionista',
             'email'=>'re@test.com',
-            'unit_id'=>'1',
+            'unit_id'=>'10',
             'password'=>Hash::make('re')]
         );
-        
+        DB::table('users')->insert([
+                'name'=>'re2',
+                'tipo'=>'Recepcionista',
+                'email'=>'re2@test.com',
+                'unit_id'=>'2',
+                'password'=>Hash::make('re')]
+        );
+
     }
 }

@@ -19,6 +19,7 @@ class DocumentoSeeder extends Seeder
                 'nroHojas'=>'10',
                 'persona_id'=>'1',
                 'unit_id'=>'1',
+                'user_id'=>'2',
                 'requisito_id'=>'1',
                 'created_at'=>now(),
                 'updated_at'=>now()

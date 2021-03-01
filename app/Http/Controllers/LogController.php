@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Archivo;
-use App\Models\Documento;
 use App\Models\Log;
 use Illuminate\Http\Request;
 
-class ArchivoController extends Controller
+class LogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +14,7 @@ class ArchivoController extends Controller
      */
     public function index()
     {
-        return Log::with('unit1')->with('unit2')->get();
-
-        //return Documento::with('persona')->with('unit')->with('requisito')->WhereDate('created_at',now())->get();
+        //
     }
 
     /**
@@ -43,12 +39,12 @@ class ArchivoController extends Controller
     }
 
     /**
-     * Display the specified rezsource.
+     * Display the specified resource.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function show(Archivo $archivo)
+    public function show(Log $log)
     {
         //
     }
@@ -56,10 +52,10 @@ class ArchivoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function edit(Archivo $archivo)
+    public function edit(Log $log)
     {
         //
     }
@@ -68,10 +64,10 @@ class ArchivoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Archivo $archivo)
+    public function update(Request $request, Log $log)
     {
         //
     }
@@ -79,10 +75,10 @@ class ArchivoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Archivo  $archivo
+     * @param  \App\Models\Log  $log
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Archivo $archivo)
+    public function destroy(Log $log)
     {
         //
     }

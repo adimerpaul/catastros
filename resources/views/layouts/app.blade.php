@@ -63,7 +63,7 @@
                             </li>
                         </router-link>
 
-                       
+
                        @if (Auth::user()->tipo=='Admin')
                             <router-link
                                 to="/users"
@@ -73,7 +73,7 @@
                                         <i class="fa fa-user-plus"></i> Usuarios
                                     </a>
                                 </li>
-                            </router-link>    
+                            </router-link>
                             <router-link
                                 to="/requisitos"
                                 v-slot="{ href, route, navigate, isActive, isExactActive }">
@@ -94,7 +94,7 @@
                                 </li>
                             </router-link>
                         @endif
-                        
+
 
                         <router-link
                             to="/documentos"
@@ -112,14 +112,14 @@
                             v-slot="{ href, route, navigate, isActive, isExactActive }">
                             <li class="nav-item">
                                 <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
-                                    <i class="fas fa-folder-open"></i> Archivos
+                                    <i class="fas fa-folder-open"></i> Unidad
                                 </a>
                             </li>
                         </router-link>
 
-                        @endauth 
+                        @endauth
                     </ul>
-                    
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

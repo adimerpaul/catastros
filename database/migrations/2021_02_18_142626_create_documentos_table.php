@@ -19,8 +19,11 @@ class CreateDocumentosTable extends Migration
             $table->string('instruccion')->nullable();
             //$table->string('referencia');
             $table->integer('nroHojas');
+            $table->string('estado')->default('PROCESO');
             $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas');
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')->references('id')->on('userss');
             $table->unsignedBigInteger('unit_id');
             $table->foreign('unit_id')->references('id')->on('units');
             $table->unsignedBigInteger('requisito_id');
