@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Unit;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -67,7 +68,14 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'unit_id' => $data['unit_id'],
+            'tipo'=>'Recepcionista',
             'password' => Hash::make($data['password']),
         ]);
     }
+    public function showRegistrationForm()
+{
+    $units = Unit::all();
+    return view("auth.register", compact("units"));
+}
 }

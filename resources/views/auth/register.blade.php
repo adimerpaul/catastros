@@ -16,7 +16,8 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                <!--<input id="name" type="text"  style="text-transform:uppercase;"  class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>-->
+                                
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -38,6 +39,20 @@
                                 @enderror
                             </div>
                         </div>
+
+                           <div class="form-group row">
+                            <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Unidad') }}</label>
+                            <div class="col-md-6">
+                           <select id="" class="form-control" name="unit_id" value="{{ old('email') }}" required>
+                               <option value="">SELECCIONAR</option>
+                               @foreach ($units as $unit )
+                                    <option value="{{$unit->id}}">{{$unit->unidad}}</option>
+                                @endforeach
+                            </select>
+                           </div>
+                        </div>
+
+                       
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
