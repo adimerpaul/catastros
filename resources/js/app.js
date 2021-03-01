@@ -34,6 +34,7 @@ import personas from './components/Persona';
 import users from './components/User';
 import units from './components/Unit';
 import documentos from './components/Documento';
+import archivos from './components/Archivo';
 
 
 
@@ -43,7 +44,8 @@ const routes = [
     { path: '/personas', component: personas },
     { path: '/users', component: users },
     { path: '/units', component: units },
-    { path: '/documentos', component: documentos }
+    { path: '/documentos', component: documentos },
+    { path: '/archivos', component: archivos }
 ]
 const router = new VueRouter({
     mode: 'history',

@@ -24,6 +24,10 @@ Route::get('/documentos', function () {
     return view('home');
 })->middleware('auth');
 
+Route::get('/archivos', function () {
+    return view('home');
+})->middleware('auth');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -34,4 +38,5 @@ route::put('/passact/{id}',[\App\Http\Controllers\UserController::class,'passact
 route::apiResource('/unit',\App\Http\Controllers\UnitController::class);
 
 Route::apiResource('/documento',\App\Http\Controllers\DocumentoController::class);
-//route::apiResource('/unidad',\App\Http\Controllers\UnidadController::class);
+Route::apiResource('/archivo',\App\Http\Controllers\ArchivoController::class);
+
