@@ -31,12 +31,13 @@ Route::get('/archivos', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-route::apiResource('/requisito',\App\Http\Controllers\RequisitoController::class);
-route::apiResource('/persona',\App\Http\Controllers\PersonaController::class);
-route::apiResource('/user',\App\Http\Controllers\UserController::class);
-route::put('/passact/{id}',[\App\Http\Controllers\UserController::class,'passact']);
-route::apiResource('/unit',\App\Http\Controllers\UnitController::class);
+route::apiResource('/requisito',\App\Http\Controllers\RequisitoController::class)->middleware('auth');
+route::apiResource('/persona',\App\Http\Controllers\PersonaController::class)->middleware('auth');
+route::apiResource('/user',\App\Http\Controllers\UserController::class)->middleware('auth');
+route::put('/passact/{id}',[\App\Http\Controllers\UserController::class,'passact'])->middleware('auth');
+route::apiResource('/unit',\App\Http\Controllers\UnitController::class)->middleware('auth');
 
-Route::apiResource('/documento',\App\Http\Controllers\DocumentoController::class);
-Route::apiResource('/archivo',\App\Http\Controllers\ArchivoController::class);
+Route::apiResource('/documento',\App\Http\Controllers\DocumentoController::class)->middleware('auth');
+Route::apiResource('/archivo',\App\Http\Controllers\ArchivoController::class)->middleware('auth');
+Route::get('/usuario',[\App\Http\Controllers\ArchivoController::class,'usuario'])->middleware('auth');
 

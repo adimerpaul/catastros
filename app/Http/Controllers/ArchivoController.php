@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Archivo;
 use App\Models\Documento;
 use App\Models\Log;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ArchivoController extends Controller
 {
@@ -16,9 +18,16 @@ class ArchivoController extends Controller
      */
     public function index()
     {
-        return Log::with('unit1')->with('unit2')->get();
-
+        return Log::with('unit1')->with('unit2')->with('documento')->with('user')->where('estado','!=','FINALIZADO')->where('unit_id2',Auth::user()->unit_id)->get();
+        //return Auth::user();
         //return Documento::with('persona')->with('unit')->with('requisito')->WhereDate('created_at',now())->get();
+    }
+    public function usuario()
+    {
+//        return Log::with('unit1')->with('unit2')->with('documento')->with('user')->where('estado','!=','FINALIZADO')->where('unit_id2',Auth::user()->unit_id)->get();
+        return User::with('unit')->where('id',Auth::user()->id)->first();
+        //return Documento::with('persona')->with('unit')->with('requisito')->WhereDate('created_at',now())->get();
+//        return 'a';
     }
 
     /**

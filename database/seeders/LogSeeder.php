@@ -17,7 +17,7 @@ class LogSeeder extends Seeder
         DB::table('logs')->insert([
             'documento_id'=>'1',
             'unit_id1'=>'10',
-            'unit_id2'=>'1',
+            'unit_id2'=>'2',
             'user_id'=>'2',
             'created_at'=>now(),
             'updated_at'=>now()
