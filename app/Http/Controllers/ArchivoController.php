@@ -48,7 +48,43 @@ class ArchivoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        return $request;
+//        exit;
+        $l=Log::find($request->id);
+//        return $l;
+//        exit;
+        $l->estado='FINALIZADO';
+//        return $l;
+//        exit;
+        $l->save();
+//        exit;
+        $ln=new Log();
+        $ln->user_id = Auth::user()->id;
+        $ln->unit_id1 = Auth::user()->unit_id;
+        $ln->documento_id = $request->documento_id;
+        $ln->unit_id2=$request->unit_id2;
+        $ln->save();
+    }
+    public function terminar(Request $request)
+    {
+//        return $request;
+//        exit;
+        $l=Log::find($request->id);
+//        return $l;
+//        exit;
+        $l->estado='FINALIZADO';
+        $l->save();
+//        exit;
+        $d=Documento::find($request->documento_id);
+        $d->estado='FINALIZADO';
+        $d->save();
+//        exit;
+//        $ln=new Log();
+//        $ln->user_id = Auth::user()->id;
+//        $ln->unit_id1 = Auth::user()->unit_id;
+//        $ln->documento_id = $request->documento_id;
+//        $ln->unit_id2=$request->unit_id2;
+//        $ln->save();
     }
 
     /**

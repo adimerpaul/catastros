@@ -54,9 +54,6 @@ class UnitSeeder extends Seeder
             [
                 'unidad'=>'SECRETARIA'
             ],
-            [
-                'unidad'=>''
-            ],
             ]);
          }
 }
