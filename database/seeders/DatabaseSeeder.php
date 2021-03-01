@@ -16,35 +16,16 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
+
             RequisitoSeeder::class,
             DetalleSeeder::class,
             PersonaSeeder::class,
             UnitSeeder::class,
+            UserSeeder::class,
             DocumentoSeeder::class,
             LogSeeder::class
         ]);
         // \App\Models\User::factory(10)->create();
-        DB::table('users')->insert([
-            'name'=>'admin',
-            'tipo'=>'Admin',
-            'email'=>'admin@test.com',
-            'unit_id'=>'1',
-            'password'=>Hash::make('admin')]
-        );
-        DB::table('users')->insert([
-            'name'=>'re',
-            'tipo'=>'Recepcionista',
-            'email'=>'re@test.com',
-            'unit_id'=>'10',
-            'password'=>Hash::make('re')]
-        );
-        DB::table('users')->insert([
-                'name'=>'re2',
-                'tipo'=>'Recepcionista',
-                'email'=>'re2@test.com',
-                'unit_id'=>'2',
-                'password'=>Hash::make('re')]
-        );
 
     }
 }

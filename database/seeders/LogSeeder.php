@@ -18,6 +18,7 @@ class LogSeeder extends Seeder
             'documento_id'=>'1',
             'unit_id1'=>'10',
             'unit_id2'=>'1',
+            'user_id'=>'2',
             'created_at'=>now(),
             'updated_at'=>now()
         ]);
