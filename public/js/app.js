@@ -2515,6 +2515,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -85939,17 +85954,43 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "container" }, [
       _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "col-md-12" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header bg-success text-white" }, [
-              _vm._v(" Sistemas seguimiento de archivos")
+            _c("div", { staticClass: "card-header bg-dark text-white" }, [
+              _c("i", { staticClass: "fa fa-history" }),
+              _vm._v(" Historial de un documento")
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body text-center" }, [
-              _c("img", {
-                staticClass: "img-fluid",
-                attrs: { src: "img/gamo.png", alt: "Responsive image" }
-              })
+            _c("div", { staticClass: "card-body " }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6" }, [
+                  _c("form", [
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-3 col-form-label",
+                          attrs: { for: "Numero" }
+                        },
+                        [_vm._v("Numero")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-5" }, [
+                        _c("input", {
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "password",
+                            id: "Numero",
+                            placeholder: "Numero de documento"
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-4" }, [_c("button")])
+                    ])
+                  ])
+                ])
+              ])
             ])
           ])
         ])
