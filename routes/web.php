@@ -40,4 +40,5 @@ route::apiResource('/unit',\App\Http\Controllers\UnitController::class)->middlew
 Route::apiResource('/documento',\App\Http\Controllers\DocumentoController::class)->middleware('auth');
 Route::apiResource('/archivo',\App\Http\Controllers\ArchivoController::class)->middleware('auth');
 Route::get('/usuario',[\App\Http\Controllers\ArchivoController::class,'usuario'])->middleware('auth');
+Route::get('/numero',[\App\Http\Controllers\DocumentoController::class,'numero'])->middleware('auth');
 
