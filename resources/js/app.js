@@ -35,6 +35,7 @@ import users from './components/User';
 import units from './components/Unit';
 import documentos from './components/Documento';
 import archivos from './components/Archivo';
+import historial from './components/Historial';
 
 
 
@@ -45,7 +46,8 @@ const routes = [
     { path: '/users', component: users },
     { path: '/units', component: units },
     { path: '/documentos', component: documentos },
-    { path: '/archivos', component: archivos }
+    { path: '/archivos', component: archivos },
+    { path: '/historial', component: historial }
 ]
 const router = new VueRouter({
     mode: 'history',

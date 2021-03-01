@@ -116,6 +116,15 @@
                                 </a>
                             </li>
                         </router-link>
+                            <router-link
+                                to="/historial"
+                                v-slot="{ href, route, navigate, isActive, isExactActive }">
+                                <li class="nav-item">
+                                    <a class="nav-link" :href="href" @click="navigate" :class="[isActive && 'active', isExactActive && '']">
+                                        <i class="fas fa-history"></i> Hitorial
+                                    </a>
+                                </li>
+                            </router-link>
 
                         @endauth
                     </ul>

@@ -27,6 +27,9 @@ Route::get('/documentos', function () {
 Route::get('/archivos', function () {
     return view('home');
 })->middleware('auth');
+Route::get('/historial', function () {
+    return view('home');
+})->middleware('auth');
 
 Auth::routes();
 
