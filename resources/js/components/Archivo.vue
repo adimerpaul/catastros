@@ -159,6 +159,7 @@
                 });
             },
             terminar(i){
+                this.log=i;
                 this.$swal({
                     title: 'Estas seguro?',
                     text: "No podras revertir el proceso!",
