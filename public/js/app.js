@@ -2270,6 +2270,7 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       detalles: [],
       unit: {},
       units: [],
+      usuarios: [],
       guar: true,
       persona: {},
       codU: '',
@@ -2288,9 +2289,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       //console.log(res.data);
       _this.units = res.data;
     });
+    axios.get('/usuario').then(function (res) {
+      _this.usuarios = res.data;
+    });
   },
   methods: {
     imprimir: function imprimir(i) {
+      var _this2 = this;
+
       var doc = new jspdf__WEBPACK_IMPORTED_MODULE_0__.default({
         orientation: "portrait",
         unit: "mm",
@@ -2305,8 +2311,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       var t2 = i.codigounidad;
       var t3 = i.nroHojas.toString();
       var t4 = moment__WEBPACK_IMPORTED_MODULE_2___default()(i.created_at).format('DD-MM-YYYY');
-      var t5 = "Procedencia: ";
-      var t6 = "Referencia: ";
+      var t5 = "Procedencia: " + this.usuarios.unit.unidad;
+      var t6 = "Referencia: " + i.instruccion;
       doc.addImage("img/gamo1.jpg", "JPEG", 14, 30, 97, 165);
       doc.setFont("times", "bold");
       doc.setFontSize(10);
@@ -2324,6 +2330,27 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       var bbb = '';
       var instrucciones = ['Urgente', 'Informe en el dia', 'Reuna antecedentes', 'Remita antecedentes', 'Instruya su ejecucion', 'Archive', 'Conteste Carta', 'Verificar y procesar', 'Efectue liquidacion', 'Remitase a la MAE', 'Informe', 'Su Atencion', ''];
       this.units.forEach(function (row) {
+        /*if(row.unidad==this.usuarios.unit.unidad || row.unidad==i.unit.unidad){
+            de='X';
+            aaa='X';
+            body.push([con+1,row.unidad,de,aaa,instrucciones[con],bbb]);
+         }else{
+            de='';
+            aaa='';
+            body.push([con+1,row.unidad,de,aaa,instrucciones[con],bbb]);
+        }*/
+        if (row.unidad == _this2.usuarios.unit.unidad) {
+          de = 'X';
+        } else {
+          de = '';
+        }
+
+        if (row.unidad == i.unit.unidad) {
+          aaa = 'X';
+        } else {
+          aaa = '';
+        }
+
         body.push([con + 1, row.unidad, de, aaa, instrucciones[con], bbb]);
         con++;
       });
@@ -2339,7 +2366,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         },
         startY: 30,
         head: [['#', 'UNIDAD', 'DE', 'A', 'INSTRUCCION', '~']],
-        body: body
+        body: body,
+        foot: [['', '', '', '', '', '']]
       });
       doc.autoTable({
         theme: 'plain',
@@ -2353,8 +2381,12 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
         },
         startY: 154,
         body: [['Para'], ['Instrucciones Complementarias'], ['                                                                                                FIRMA Y SELLO'], ['Para'], ['Instrucciones Complementarias'], ['                                                                                                FIRMA Y SELLO']]
+      }); //doc.save('table.pdf')   
+
+      doc.autoPrint();
+      doc.output('dataurlnewwindow', {
+        filename: 'table.pdf'
       });
-      doc.save('table.pdf');
     },
     onChange: function onChange(event) {
       //console.log(event.target.value)
@@ -2363,21 +2395,19 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       }); //console.log(this.requisito);
     },
     buscarci: function buscarci() {
-      var _this2 = this;
+      var _this3 = this;
 
       //console.log(this.documento.ci);
-      var cm = this;
-
+      //let cm=this;
       if (this.ci != '') {
         this.bu = true;
         axios.get('/persona/' + this.ci).then(function (res) {
-          _this2.bu = false;
+          _this3.bu = false;
 
           if (res.data != '') {
             //console.log(res.data);
-            cm.documento.nombre = res.data.nombre;
-            console.log(_this2.documento.nombre);
-            cm.documento.apellidos = res.data.apellidos; //console.log(this.documento);
+            _this3.persona = res.data; //this.persona.apellidos=res.data.nombre;
+            //console.log(this.documento);
           } //this.documento.apellidos=res.data.apellidos;
 
         });
@@ -2387,12 +2417,14 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       $('#staticBackdrop').modal('hide');
     },
     guardar: function guardar() {
-      var _this3 = this;
+      var _this4 = this;
 
       //console.log();
       //return false;
       this.guar = false;
-      this.documento.ci = this.ci; //this.documento.ci=this.ci;
+      this.documento.ci = this.ci;
+      this.documento.nombre = this.persona.nombre;
+      this.documento.apellidos = this.persona.apellidos; //this.documento.ci=this.ci;
       //this.documento.ci=this.ci;
 
       axios.post('/documento', this.documento).then(function (res) {
@@ -2400,28 +2432,28 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 
         $('#registrar').modal('hide');
 
-        _this3.datos();
+        _this4.datos();
 
-        _this3.documento = {};
+        _this4.documento = {};
 
-        _this3.$swal('Registro', 'exitoso', 'success');
+        _this4.$swal('Registro', 'exitoso', 'success');
 
-        _this3.guar = true;
+        _this4.guar = true;
       });
     },
     datos: function datos() {
-      var _this4 = this;
+      var _this5 = this;
 
       axios.get('/documento').then(function (res) {
-        _this4.documentos = res.data;
+        _this5.documentos = res.data;
       });
     },
     eliminar: function eliminar(id) {
-      var _this5 = this;
+      var _this6 = this;
 
       if (confirm('Seguro desea eliminar?')) {
         axios["delete"]('/documento/' + id).then(function (res) {
-          _this5.datos();
+          _this6.datos();
         });
       }
     },
@@ -2430,24 +2462,24 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       $('#modificar').modal('show');
     },
     update: function update() {
-      var _this6 = this;
+      var _this7 = this;
 
       axios.put('/documento/' + this.documento.id, this.documento).then(function (res) {
         $('#modificar').modal('hide');
 
-        _this6.datos();
+        _this7.datos();
 
-        _this6.documento = {};
+        _this7.documento = {};
       });
     },
     crear: function crear() {
-      var _this7 = this;
+      var _this8 = this;
 
       this.ci = '';
       this.requisito = {};
       axios.get('/numero').then(function (res) {
-        _this7.documento = {};
-        _this7.documento.codigounidad = res.data;
+        _this8.documento = {};
+        _this8.documento.codigounidad = res.data + '-' + moment__WEBPACK_IMPORTED_MODULE_2___default()((0,moment__WEBPACK_IMPORTED_MODULE_2__.now)()).format('YYYY');
       });
     }
   }
@@ -85365,8 +85397,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.documento.nombre,
-                                    expression: "documento.nombre"
+                                    value: _vm.persona.nombre,
+                                    expression: "persona.nombre"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -85376,14 +85408,14 @@ var render = function() {
                                   placeholder: "Nombres",
                                   required: ""
                                 },
-                                domProps: { value: _vm.documento.nombre },
+                                domProps: { value: _vm.persona.nombre },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.documento,
+                                      _vm.persona,
                                       "nombre",
                                       $event.target.value
                                     )
@@ -85402,8 +85434,8 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.documento.apellidos,
-                                    expression: "documento.apellidos"
+                                    value: _vm.persona.apellidos,
+                                    expression: "persona.apellidos"
                                   }
                                 ],
                                 staticClass: "form-control",
@@ -85413,14 +85445,14 @@ var render = function() {
                                   placeholder: "Apellidos",
                                   required: ""
                                 },
-                                domProps: { value: _vm.documento.apellidos },
+                                domProps: { value: _vm.persona.apellidos },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.documento,
+                                      _vm.persona,
                                       "apellidos",
                                       $event.target.value
                                     )
@@ -85778,8 +85810,9 @@ var render = function() {
                     _vm._v(" "),
                     _c("th", [
                       _vm._v(
-                        _vm._s(_vm._f("moment")(i.created_at, "YYYY-MM-DD")) +
-                          " "
+                        _vm._s(
+                          _vm._f("moment")(i.created_at, "YYYY-MM-DD hh:mm:ss")
+                        ) + " "
                       )
                     ]),
                     _vm._v(" "),
