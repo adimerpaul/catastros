@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
-                    <div class="card-header bg-dark text-white"> <i class="fa fa-history"></i> Historial de un documento</div>
+                    <div class="card-header bg-dark text-white"> <i class="fa fa-history"></i> Historial de un documento del Cliente</div>
                     <div class="card-body " >
                         <div class="row">
                             <div class="col-5">
@@ -23,30 +23,7 @@
                                         </div>
                                     </div>
                                 </form>
-                                <form @submit.prevent="buscar">
-                                    <div class="form-group row">
-                                        <label for="Numero" class="col-sm-3 col-form-label">Persona:</label>
-                                        <div class="col-sm-9">
-                                            <label class="col-form-label">{{documento.persona.apellidos}} {{documento.persona.nombre}}</label>
-                                        </div>
-                                        <label for="Numero" class="col-sm-3 col-form-label">Celular:</label>
-                                        <div class="col-sm-9">
-                                            <label class="col-form-label">{{documento.persona.celular}}</label>
-                                        </div>
-                                        <label for="Numero" class="col-sm-3 col-form-label">Carnet:</label>
-                                        <div class="col-sm-9">
-                                            <label class="col-form-label">{{documento.persona.ci}}</label>
-                                        </div>
-                                        <label for="Numero" class="col-sm-3 col-form-label">Estado:</label>
-                                        <div class="col-sm-9">
-                                            <label class="col-form-label">
-                                                <div class="badge badge-success" :class="documento.estado=='FINALIZADO'?'badge-danger':'badge-warning'">
-                                                    {{documento.estado}}
-                                                </div>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </form>
+                                
                             </div>
                             <div class="col-7">
                                 <table class="table table-border">
@@ -98,7 +75,7 @@
         methods:{
             buscar(){
                 this.bool=false;
-                axios.get('/archivo/'+this.id).then(res=>{
+                axios.get('/archivo2/'+this.id).then(res=>{
                     // console.log(res.data);
                     this.bool=true;
                     if(res.data==''){

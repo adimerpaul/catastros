@@ -35,6 +35,9 @@ Route::get('/consulta', function () {
     return view('consulta');
 });
 
+
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -49,5 +52,7 @@ Route::apiResource('/archivo',\App\Http\Controllers\ArchivoController::class)->m
 Route::get('/usuario',[\App\Http\Controllers\ArchivoController::class,'usuario'])->middleware('auth');
 Route::post('/terminar',[\App\Http\Controllers\ArchivoController::class,'terminar'])->middleware('auth');
 Route::get('/numero',[\App\Http\Controllers\DocumentoController::class,'numero'])->middleware('auth');
+
+Route::get('/archivo2/{id}',[\App\Http\Controllers\ArchivoController::class,'show']);
 
 

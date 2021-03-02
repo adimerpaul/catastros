@@ -32,7 +32,8 @@ header {
     /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, hsla(340, 95%, 50%, 0.459), hsla(317, 45%, 52%, 0.664)), url(/img/catastro.jpg);
     /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, hsla(108, 88%, 24%, 0.671), hsla(61, 92%, 45%, 0.664)), url(/img/catastro.jpg);
+    background: linear-gradient(to right, hsla(76, 92%, 45%, 0.664), hsla(108, 91%, 21%, 0.671)), url(/img/catastro.jpg);
+    /*background: linear-gradient(to right, hsla(108, 91%, 21%, 0.671), hsla(76, 92%, 45%, 0.664)), url(/img/catastro.jpg);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-size: cover;
     background-attachment: fixed;
