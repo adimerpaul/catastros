@@ -1937,6 +1937,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -2015,6 +2017,7 @@ __webpack_require__.r(__webpack_exports__);
     terminar: function terminar(i) {
       var _this3 = this;
 
+      this.log = i;
       this.$swal({
         title: 'Estas seguro?',
         text: "No podras revertir el proceso!",
@@ -2530,9 +2533,110 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  data: function data() {
+    return {
+      id: '',
+      documento: {
+        persona: {},
+        logs: {}
+      },
+      bool: true
+    };
+  },
+  mounted: function mounted() {// console.log('Component mounted.')
+  },
+  methods: {
+    buscar: function buscar() {
+      var _this = this;
+
+      this.bool = false;
+      axios.get('/archivo/' + this.id).then(function (res) {
+        // console.log(res.data);
+        _this.bool = true;
+
+        if (res.data == '') {
+          _this.documento = {
+            persona: {},
+            logs: {}
+          };
+
+          _this.$swal({
+            title: 'No se encontro',
+            text: 'Registro',
+            icon: "info" // time:3000
+
+          });
+        } else {
+          _this.documento = res.data;
+        }
+      })["catch"](function (e) {
+        //this.$swal('Registro','exitoso','success');
+        _this.$swal({
+          title: "Error",
+          text: e.response.data.message,
+          type: "error" // timer: 3000
+
+        });
+
+        _this.guar = true;
+      });
+    }
   }
 });
 
@@ -3710,6 +3814,7 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 
 Vue.use(VueToast);*/
 
+vue__WEBPACK_IMPORTED_MODULE_0__.default.component('historial-componet', __webpack_require__(/*! ./components/Historial.vue */ "./resources/js/components/Historial.vue").default);
 
 
 
@@ -84978,6 +85083,8 @@ var render = function() {
                     return _c("tr", { key: index }, [
                       _c("td", [_vm._v(_vm._s(index + 1))]),
                       _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(i.documento.codigounidad))]),
+                      _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(i.unit1.unidad))]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(i.unit2.unidad))]),
@@ -85163,6 +85270,8 @@ var staticRenderFns = [
     return _c("thead", [
       _c("tr", [
         _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Codigounidad")]),
         _vm._v(" "),
         _c("th", [_vm._v("De")]),
         _vm._v(" "),
@@ -85945,26 +86054,26 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-12" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header bg-dark text-white" }, [
-              _c("i", { staticClass: "fa fa-history" }),
-              _vm._v(" Historial de un documento")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body " }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-6" }, [
-                  _c("form", [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body " }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-5" }, [
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.buscar($event)
+                      }
+                    }
+                  },
+                  [
                     _c("div", { staticClass: "form-group row" }, [
                       _c(
                         "label",
@@ -85972,28 +86081,247 @@ var staticRenderFns = [
                           staticClass: "col-sm-3 col-form-label",
                           attrs: { for: "Numero" }
                         },
-                        [_vm._v("Numero")]
+                        [_vm._v("Codigo unidad:")]
                       ),
                       _vm._v(" "),
                       _c("div", { staticClass: "col-sm-5" }, [
                         _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.id,
+                              expression: "id"
+                            }
+                          ],
                           staticClass: "form-control",
                           attrs: {
-                            type: "password",
+                            type: "text",
                             id: "Numero",
-                            placeholder: "Numero de documento"
+                            placeholder: "Numero de documento",
+                            required: ""
+                          },
+                          domProps: { value: _vm.id },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.id = $event.target.value
+                            }
                           }
                         })
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-4" }, [_c("button")])
+                      _c("div", { staticClass: "col-sm-4" }, [
+                        _vm.bool
+                          ? _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-dark",
+                                attrs: { type: "submit" }
+                              },
+                              [
+                                _vm._v(" Consultar "),
+                                _c("i", { staticClass: "fa fa-check-circle" })
+                              ]
+                            )
+                          : _c("button", { staticClass: "btn btn-dark" }, [
+                              _vm._m(1)
+                            ])
+                      ])
                     ])
-                  ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.buscar($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group row" }, [
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-3 col-form-label",
+                          attrs: { for: "Numero" }
+                        },
+                        [_vm._v("Persona:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c("label", { staticClass: "col-form-label" }, [
+                          _vm._v(
+                            _vm._s(_vm.documento.persona.apellidos) +
+                              " " +
+                              _vm._s(_vm.documento.persona.nombre)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-3 col-form-label",
+                          attrs: { for: "Numero" }
+                        },
+                        [_vm._v("Celular:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c("label", { staticClass: "col-form-label" }, [
+                          _vm._v(_vm._s(_vm.documento.persona.celular))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-3 col-form-label",
+                          attrs: { for: "Numero" }
+                        },
+                        [_vm._v("Carnet:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c("label", { staticClass: "col-form-label" }, [
+                          _vm._v(_vm._s(_vm.documento.persona.ci))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          staticClass: "col-sm-3 col-form-label",
+                          attrs: { for: "Numero" }
+                        },
+                        [_vm._v("Estado:")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-sm-9" }, [
+                        _c("label", { staticClass: "col-form-label" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "badge badge-success",
+                              class:
+                                _vm.documento.estado == "FINALIZADO"
+                                  ? "badge-danger"
+                                  : "badge-warning"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                                " +
+                                  _vm._s(_vm.documento.estado) +
+                                  "\n                                            "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-7" }, [
+                _c("table", { staticClass: "table table-border" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.documento.logs, function(i, index) {
+                      return _c("tr", { key: index }, [
+                        _c("td", [_vm._v(_vm._s(index + 1))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(i.unit1.unidad))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(i.unit2.unidad))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(
+                              _vm._f("moment")(i.created_at, "YYYY-MM-DD HH:mm")
+                            )
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "div",
+                            {
+                              staticClass: "badge badge-success",
+                              class:
+                                i.estado == "FINALIZADO"
+                                  ? "badge-danger"
+                                  : "badge-warning"
+                            },
+                            [
+                              _vm._v(
+                                "\n                                                " +
+                                  _vm._s(i.estado) +
+                                  "\n                                            "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    }),
+                    0
+                  )
                 ])
               ])
             ])
           ])
         ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header bg-dark text-white" }, [
+      _c("i", { staticClass: "fa fa-history" }),
+      _vm._v(" Historial de un documento")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "spinner-border spinner-border-sm",
+        attrs: { role: "status" }
+      },
+      [_c("span", { staticClass: "sr-only" }, [_vm._v("Loading...")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("De:")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("A:")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")])
       ])
     ])
   }
