@@ -93,9 +93,15 @@ class ArchivoController extends Controller
      * @param  \App\Models\Archivo  $archivo
      * @return \Illuminate\Http\Response
      */
-    public function show(Archivo $archivo)
+    public function show($id)
     {
-        //
+        return Documento::where('codigounidad',$id)->with('persona')->with('unit')->with('requisito')->with('logs')->first();
+//        return response(array(
+//            'documento' => $documento,
+//        ));
+//        return response::json(array(
+//
+//        ));
     }
 
     /**

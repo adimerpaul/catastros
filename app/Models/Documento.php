@@ -20,4 +20,7 @@ class Documento extends Model
     {
         return $this->belongsTo(Requisito::class);
     }
+    public function logs(){
+        return $this->hasMany(Log::class)->with('unit1')->with('unit2');
+    }
 }
