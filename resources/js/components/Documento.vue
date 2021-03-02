@@ -47,9 +47,13 @@
                                                     <label for="codigounidad">Codigo unidad</label>
                                                     <input type="text" class="form-control" id="codigounidad" v-model="documento.codigounidad">
                                                 </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="instruccion">instruccion</label>
-                                                    <input type="text" class="form-control" id="instruccion" max="100" min="5" v-model="documento.instruccion">
+                                                <div class="form-group col-md-3">
+                                                    <label for="instruccion">Instruccion</label>
+                                                    <input type="text" class="form-control" id="instruccion" v-model="documento.instruccion">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="instruccion">Celular</label>
+                                                    <input type="text" class="form-control" id="instruccion" v-model="documento.celular">
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -112,7 +116,7 @@
                             <tbody>
                                 <tr v-for="(i,index) in documentos" :key="index">
                                     <th scope="row">{{index+1}}</th>
-                                    <td>{{i.persona.ci}}</td>
+                                    <td>{{i.persona.ci}} <br><b>CELULAR: </b><br>{{i.celular}}</td>
                                     <td>{{i.persona.nombre}} {{i.persona.apellidos}}</td>
                                     <td>{{i.nroHojas}}</td>
                                     <td>{{i.unit.unidad}} <br><b>INSTRUCCION:</b> {{i.instruccion}}</td>

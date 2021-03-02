@@ -17,6 +17,7 @@ class CreateDocumentosTable extends Migration
             $table->id();
             $table->string('codigounidad');
             $table->string('instruccion')->nullable();
+            $table->string('celular')->nullable();
             //$table->string('referencia');
             $table->integer('nroHojas');
             $table->string('estado')->default('PROCESO');

@@ -60,6 +60,7 @@ class DocumentoController extends Controller
         
         $d->codigounidad=$request->codigounidad;
         $d->instruccion=$request->instruccion;
+        $d->celular=$request->celular;
         $d->nroHojas=$request->nroHojas;
         $d->persona_id=$persona_id;
         $d->unit_id=$request->unit_id;  
