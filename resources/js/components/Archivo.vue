@@ -23,6 +23,7 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Codigounidad</th>
                                 <th>De</th>
                                 <th>A</th>
                                 <th>Usuario</th>
@@ -33,6 +34,7 @@
                             <tbody>
                             <tr v-for="(i,index) in logs" :key="index">
                                 <td>{{index+1}}</td>
+                                <td>{{i.documento.codigounidad}}</td>
                                 <td>{{i.unit1.unidad}}</td>
                                 <td>{{i.unit2.unidad}}</td>
                                 <td>{{i.user.name}}</td>

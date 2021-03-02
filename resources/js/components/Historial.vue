@@ -6,15 +6,20 @@
                     <div class="card-header bg-dark text-white"> <i class="fa fa-history"></i> Historial de un documento</div>
                     <div class="card-body " >
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-5">
                                 <form @submit.prevent="buscar">
                                     <div class="form-group row">
-                                        <label for="Numero" class="col-sm-3 col-form-label">Numero</label>
+                                        <label for="Numero" class="col-sm-3 col-form-label">Codigo unidad:</label>
                                         <div class="col-sm-5">
                                             <input type="text" v-model="id" class="form-control" id="Numero" placeholder="Numero de documento" required>
                                         </div>
                                         <div class="col-sm-4">
-                                            <button type="submit" class="btn btn-dark"> Consultar <i class="fa fa-check-circle"></i></button>
+                                            <button v-if="bool" type="submit" class="btn btn-dark"> Consultar <i class="fa fa-check-circle"></i></button>
+                                            <button v-else class="btn btn-dark">
+                                                <div class="spinner-border spinner-border-sm" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </button>
                                         </div>
                                     </div>
                                 </form>
@@ -32,10 +37,18 @@
                                         <div class="col-sm-9">
                                             <label class="col-form-label">{{documento.persona.ci}}</label>
                                         </div>
+                                        <label for="Numero" class="col-sm-3 col-form-label">Estado:</label>
+                                        <div class="col-sm-9">
+                                            <label class="col-form-label">
+                                                <div class="badge badge-success" :class="documento.estado=='FINALIZADO'?'badge-danger':'badge-warning'">
+                                                    {{documento.estado}}
+                                                </div>
+                                            </label>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
-                            <div class="col-6">
+                            <div class="col-7">
                                 <table class="table table-border">
                                     <thead>
                                         <tr>
@@ -47,8 +60,17 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td></td>
+                                        <tr v-for="(i,index) in documento.logs" :key="index">
+                                            <td>{{index+1}}</td>
+                                            <td>{{i.unit1.unidad}}</td>
+                                            <td>{{i.unit2.unidad}}</td>
+                                            <td>{{i.created_at|moment("YYYY-MM-DD HH:mm")}}</td>
+                                            <td>
+                                                <div class="badge badge-success" :class="i.estado=='FINALIZADO'?'badge-danger':'badge-warning'">
+                                                    {{i.estado}}
+                                                </div>
+
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -66,7 +88,8 @@
         data(){
             return{
                 id:'',
-                documento:{persona:{}}
+                documento:{persona:{},logs:{}},
+                bool:true,
             }
         },
         mounted() {
@@ -74,10 +97,12 @@
         },
         methods:{
             buscar(){
+                this.bool=false;
                 axios.get('/archivo/'+this.id).then(res=>{
-                    console.log(res.data);
+                    // console.log(res.data);
+                    this.bool=true;
                     if(res.data==''){
-                        this.documento={persona:{}}
+                        this.documento={persona:{},logs:{}}
                         this.$swal({
                             title:'No se encontro',
                             text:'Registro',
