@@ -31,11 +31,11 @@
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                 <label for="nombre">Nombres </label>
-                                                <input type="text" class="form-control" id="nombre" v-model="documento.nombre"  placeholder="Nombres" required>
+                                                <input type="text" class="form-control" id="nombre" v-model="persona.nombre"  placeholder="Nombres" required>
                                                 </div>
                                                 <div class="form-group col-md-4">
                                                 <label for="apellido">Apellidos</label>
-                                                <input type="text" class="form-control" id="apellido" v-model="documento.apellidos" placeholder="Apellidos" required>
+                                                <input type="text" class="form-control" id="apellido" v-model="persona.apellidos" placeholder="Apellidos" required>
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -47,9 +47,13 @@
                                                     <label for="codigounidad">Codigo unidad</label>
                                                     <input type="text" class="form-control" id="codigounidad" v-model="documento.codigounidad">
                                                 </div>
-                                                <div class="form-group col-md-6">
-                                                    <label for="instruccion">instruccion</label>
-                                                    <input type="text" class="form-control" id="instruccion" max="100" min="5" v-model="documento.instruccion">
+                                                <div class="form-group col-md-3">
+                                                    <label for="instruccion">Instruccion</label>
+                                                    <input type="text" class="form-control" id="instruccion" v-model="documento.instruccion">
+                                                </div>
+                                                <div class="form-group col-md-3">
+                                                    <label for="instruccion">Celular</label>
+                                                    <input type="text" class="form-control" id="instruccion" v-model="documento.celular">
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -112,13 +116,13 @@
                             <tbody>
                                 <tr v-for="(i,index) in documentos" :key="index">
                                     <th scope="row">{{index+1}}</th>
-                                    <td>{{i.persona.ci}}</td>
+                                    <td>{{i.persona.ci}} <br><b>CELULAR: </b><br>{{i.celular}}</td>
                                     <td>{{i.persona.nombre}} {{i.persona.apellidos}}</td>
                                     <td>{{i.nroHojas}}</td>
                                     <td>{{i.unit.unidad}} <br><b>INSTRUCCION:</b> {{i.instruccion}}</td>
                                     <td>{{i.requisito.nombre}}</td>
                                     <td>{{i.estado}}</td>
-                                    <th>{{i.created_at| moment("YYYY-MM-DD")}} </th>
+                                    <th>{{i.created_at| moment("YYYY-MM-DD hh:mm:ss")}} </th>
                                     <td>
                                         <div class="btn-group">
 <!--                                            <button class="btn btn-warning btn-sm" @click="actualizar(i)"><i class="fa fa-pencil"></i></button>-->
@@ -140,7 +144,7 @@
     const axios=require('axios');
     import jsPDF from 'jspdf'
     import 'jspdf-autotable'
-    import moment from 'moment'
+    import moment, { now } from 'moment'
     export default {
         data(){
             return {
@@ -153,6 +157,7 @@
                 detalles:[],
                 unit:{},
                 units:[],
+                usuarios:[],
                 guar:true,
                 persona:{},
                 codU: '',
@@ -172,6 +177,9 @@
                      //console.log(res.data);
                     this.units=res.data;
                 })
+                axios.get('/usuario').then(res=>{
+                    this.usuarios=res.data;
+                })
         },
         methods:{
             imprimir (i) {
@@ -190,8 +198,8 @@
                 var t2=i.codigounidad;
                 var t3=(i.nroHojas).toString();
                 var t4=moment(i.created_at).format('DD-MM-YYYY');
-                var t5="Procedencia: ";
-                var t6="Referencia: ";
+                var t5="Procedencia: "+ this.usuarios.unit.unidad;
+                var t6="Referencia: " + i.instruccion;
                 doc.addImage("img/gamo1.jpg", "JPEG", 14,30,97,165);
                 doc.setFont("times","bold");
                 doc.setFontSize(10);
@@ -210,7 +218,26 @@
                 let instrucciones=['Urgente','Informe en el dia','Reuna antecedentes','Remita antecedentes','Instruya su ejecucion','Archive','Conteste Carta','Verificar y procesar'
                 ,'Efectue liquidacion','Remitase a la MAE','Informe','Su Atencion','',];
                 this.units.forEach(row => {
+                    /*if(row.unidad==this.usuarios.unit.unidad || row.unidad==i.unit.unidad){
+                        de='X';
+                        aaa='X';
+                        body.push([con+1,row.unidad,de,aaa,instrucciones[con],bbb]);
 
+                    }else{
+                        de='';
+                        aaa='';
+                        body.push([con+1,row.unidad,de,aaa,instrucciones[con],bbb]);
+                    }*/
+                    if(row.unidad==this.usuarios.unit.unidad){
+                        de='X';
+                    }else{
+                        de='';
+                    }
+                    if(row.unidad==i.unit.unidad){
+                        aaa='X';
+                    }else{
+                        aaa='';
+                    }
                     body.push([con+1,row.unidad,de,aaa,instrucciones[con],bbb]);
                     con++;
                 });
@@ -229,6 +256,7 @@
 
                 head: [['#', 'UNIDAD','DE','A','INSTRUCCION','~']],
                 body:body,
+                foot:[['','','','','','']]
                 })
                 doc.autoTable({
                     theme: 'plain',
@@ -245,7 +273,9 @@
                          ,['Para'],['Instrucciones Complementarias'],['                                                                                                FIRMA Y SELLO']],
                 })
 
-                doc.save('table.pdf')
+                //doc.save('table.pdf')   
+                doc.autoPrint();
+                doc.output('dataurlnewwindow', {filename: 'table.pdf'});
 
             },
             onChange(event) {
@@ -256,16 +286,15 @@
             },
             buscarci(){
                     //console.log(this.documento.ci);
-                    let cm=this;
+                    //let cm=this;
                     if(this.ci!=''){
                         this.bu=true;
                         axios.get('/persona/'+this.ci).then(res=>{
                             this.bu=false;
                             if(res.data!=''){
                                 //console.log(res.data);
-                                cm.documento.nombre=res.data.nombre;
-                                console.log(this.documento.nombre);
-                                cm.documento.apellidos=res.data.apellidos;
+                                this.persona=res.data;
+                                //this.persona.apellidos=res.data.nombre;
                                 //console.log(this.documento);
                             }
 
@@ -284,6 +313,8 @@
                 //return false;
                 this.guar=false;
                 this.documento.ci=this.ci;
+                this.documento.nombre=this.persona.nombre;
+                this.documento.apellidos=this.persona.apellidos;
                 //this.documento.ci=this.ci;
                 //this.documento.ci=this.ci;
                 axios.post('/documento',this.documento).then(res=>{
@@ -323,9 +354,10 @@
                
                 this.ci='';
                 this.requisito={};
+                
                 axios.get('/numero').then(res=>{                   
                     this.documento={};
-                    this.documento.codigounidad=res.data;
+                    this.documento.codigounidad=res.data +'-'+ moment(now()).format('YYYY');
                 })
                 
             }
