@@ -26,7 +26,10 @@ import 'vue-toast-notification/dist/theme-sugar.css';
 Vue.use(VueToast);*/
 
 
-
+Vue.component(
+    'historial-componet',
+    require('./components/Historial2.vue').default
+);
 
 import honme from './components/ExampleComponent';
 import requisitos from './components/Requisito';
@@ -39,6 +42,7 @@ import historial from './components/Historial';
 
 
 
+
 const routes = [
     { path: '/home', component: honme },
     { path: '/requisitos', component: requisitos },
@@ -48,7 +52,8 @@ const routes = [
     { path: '/documentos', component: documentos },
     { path: '/archivos', component: archivos },
     { path: '/historial', component: historial }
-]
+  
+    ]
 const router = new VueRouter({
     mode: 'history',
     routes // short for `routes: routes`

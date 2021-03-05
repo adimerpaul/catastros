@@ -13,10 +13,10 @@
 <body>
     <header>
         <nav>
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Principal</a>
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Ingresar</a>
-            <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Registrarse</a>
-            <a href="#">Acerca de</a>
+            <a href="{{ url('consulta') }}">Consultas</a>
+            <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+            <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
             <a href="#">Contacto</a>
         </nav>
         <section class="textos-header">
