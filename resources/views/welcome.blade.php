@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laravel</title>
+    <title>CATASTRO</title>
     <link rel="stylesheet" href="css/estilos.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&display=swap" rel="stylesheet">
 </head>
@@ -13,9 +13,9 @@
 <body>
     <header>
         <nav>
-            <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
-            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-            <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
+            <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Principal</a>
+            <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Ingresar</a>
+            <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Registrarse</a>
             <a href="#">Acerca de</a>
             <a href="#">Contacto</a>
         </nav>

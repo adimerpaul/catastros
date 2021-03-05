@@ -2264,7 +2264,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       bu: false,
       documento: {
         nombre: '',
-        apellidos: ''
+        apellidos: '',
+        celular: ''
       },
       documentos: [],
       ci: '',
@@ -2431,7 +2432,8 @@ var axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
       this.guar = false;
       this.documento.ci = this.ci;
       this.documento.nombre = this.persona.nombre;
-      this.documento.apellidos = this.persona.apellidos; //this.documento.ci=this.ci;
+      this.documento.apellidos = this.persona.apellidos;
+      this.documento.celular = this.persona.celular; //this.documento.ci=this.ci;
       //this.documento.ci=this.ci;
 
       axios.post('/documento', this.documento).then(function (res) {
@@ -85677,7 +85679,7 @@ var render = function() {
                             ]),
                             _vm._v(" "),
                             _c("div", { staticClass: "form-group col-md-3" }, [
-                              _c("label", { attrs: { for: "instruccion" } }, [
+                              _c("label", { attrs: { for: "cel" } }, [
                                 _vm._v("Celular")
                               ]),
                               _vm._v(" "),
@@ -85686,20 +85688,20 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.documento.celular,
-                                    expression: "documento.celular"
+                                    value: _vm.persona.celular,
+                                    expression: "persona.celular"
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { type: "text", id: "instruccion" },
-                                domProps: { value: _vm.documento.celular },
+                                attrs: { type: "text", id: "cel" },
+                                domProps: { value: _vm.persona.celular },
                                 on: {
                                   input: function($event) {
                                     if ($event.target.composing) {
                                       return
                                     }
                                     _vm.$set(
-                                      _vm.documento,
+                                      _vm.persona,
                                       "celular",
                                       $event.target.value
                                     )
@@ -85929,7 +85931,7 @@ var render = function() {
                       _c("br"),
                       _c("b", [_vm._v("CELULAR: ")]),
                       _c("br"),
-                      _vm._v(_vm._s(i.celular))
+                      _vm._v(_vm._s(i.persona.celular))
                     ]),
                     _vm._v(" "),
                     _c("td", [

@@ -52,8 +52,8 @@
                                                     <input type="text" class="form-control" id="instruccion" v-model="documento.instruccion">
                                                 </div>
                                                 <div class="form-group col-md-3">
-                                                    <label for="instruccion">Celular</label>
-                                                    <input type="text" class="form-control" id="instruccion" v-model="documento.celular">
+                                                    <label for="cel">Celular</label>
+                                                    <input type="text" class="form-control" id="cel" v-model="persona.celular">
                                                 </div>
                                             </div>
                                             <div class="form-row">
@@ -116,7 +116,7 @@
                             <tbody>
                                 <tr v-for="(i,index) in documentos" :key="index">
                                     <th scope="row">{{index+1}}</th>
-                                    <td>{{i.persona.ci}} <br><b>CELULAR: </b><br>{{i.celular}}</td>
+                                    <td>{{i.persona.ci}} <br><b>CELULAR: </b><br>{{i.persona.celular}}</td>
                                     <td>{{i.persona.nombre}} {{i.persona.apellidos}}</td>
                                     <td>{{i.nroHojas}}</td>
                                     <td>{{i.unit.unidad}} <br><b>INSTRUCCION:</b> {{i.instruccion}}</td>
@@ -149,7 +149,7 @@
         data(){
             return {
                 bu:false,
-                documento:{nombre:'',apellidos:''},
+                documento:{nombre:'',apellidos:'',celular:''},
                 documentos:[],
                 ci:'',
                 requisito:{detalles:[{nombre:''}]},
@@ -315,6 +315,7 @@
                 this.documento.ci=this.ci;
                 this.documento.nombre=this.persona.nombre;
                 this.documento.apellidos=this.persona.apellidos;
+                this.documento.celular=this.persona.celular;
                 //this.documento.ci=this.ci;
                 //this.documento.ci=this.ci;
                 axios.post('/documento',this.documento).then(res=>{

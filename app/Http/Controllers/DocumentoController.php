@@ -45,6 +45,7 @@ class DocumentoController extends Controller
             $p->ci=$request->ci;
             $p->nombre=$request->nombre;
             $p->apellidos=$request->apellidos;
+            $p->celular=$request->celular;
             $p->save();
             $persona_id=$p->id;
         }else{
@@ -52,6 +53,7 @@ class DocumentoController extends Controller
             //$p->ci=$request->ci;
             $p->nombre=$request->nombre;
             $p->apellidos=$request->apellidos;
+            $p->celular=$request->celular;
             $p->save();
             $persona_id=$persona[0]->id;
         }

@@ -42,7 +42,7 @@
                                 <td>
                                     <div class="btn-group">
                                         <button @click="enviar(i)" class="btn btn-info btn-sm text-white">Enviar <i class="fa fa-plus-circle"></i></button>
-                                        <button @click="terminar(i)"class="btn btn-danger btn-sm">Terminar <i class="fa fa-times"></i></button>
+                                        <button @click="terminar(i)" class="btn btn-danger btn-sm">Terminar <i class="fa fa-times"></i></button>
                                     </div>
                                 </td>
                             </tr>
