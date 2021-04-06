@@ -25,11 +25,11 @@
                                             <div class="form-group row">
                                                 <label for="name" class="col-sm-3 col-form-label">Nombre</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="user.name" class="form-control" id="name" placeholder="Nombre">
+                                                <input type="text" v-model="user.name" class="form-control" id="name" placeholder="Nombre" required>
                                                 </div>
                                                 <label for="email" class="col-sm-3 col-form-label">Correo</label>
                                                 <div class="col-sm-8">
-                                                <input type="text" v-model="user.email" class="form-control" id="email" placeholder="Correo">
+                                                <input type="text" v-model="user.email" class="form-control" id="email" placeholder="Correo" required>
                                                 </div>
                                                 <label for="password" class="col-sm-3 col-form-label">Contraseña</label>
                                                 <div class="col-sm-8">

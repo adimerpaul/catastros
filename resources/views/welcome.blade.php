@@ -16,8 +16,8 @@
             <a href="{{ url('consulta') }}">Consultas</a>
             <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
             <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-            <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
-            <a href="#">Contacto</a>
+            <!--a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
+            <a href="#">Contacto</a-->
         </nav>
         <section class="textos-header">
             <h1>G.A.M.O</h1>
@@ -36,13 +36,12 @@
                 <img src="img/gamo.png" alt="" class="imagen-about-us">
                 <div class="contenido-textos">
                     <h3><span>*</span>MISION</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt veniam eius aspernatur ad
-                        consequuntur aperiam minima sed dicta odit numquam sapiente quam eum, architecto animi pariatur,
-                        velit doloribus laboriosam ut.</p>
+                    <p>Administrar y mantener actualizado el catastro de los bienes inmuebles, atendiendo a sus características físicas, económicas y jurídicas orientado a un uso multifinalitario, proveyendo información que sirva para el diseño, la ejecución y evaluación de las políticas públicas, el apoyo a la recaudación del impuesto inmobiliario, la planificación territorial, y la consolidación de los derechos de propiedad de los bienes inmuebles. También ser proveedores de información inmobiliaria que, bajo los principios de transparencia y eficiencia, fomente las transacciones en los mercados inmobiliarios e hipotecarios.</p>
                     <h3><span>*</span>VISION</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt veniam eius aspernatur ad
-                        consequuntur aperiam minima sed dicta odit numquam sapiente quam eum, architecto animi pariatur,
-                        velit doloribus laboriosam ut.</p>
+                    <p>Ser un ejemplo de Institución Pública, moderna, transparente y eficiente, al servicio de los ciudadanos caracterizado por su accesibilidad, calidad, y agilidad en el desarrollo de las diversas prestaciones.<BR>
+
+                    En pocas palabras: ofrecer una experiencia “perfecta” para sus usuarios en todas sus operaciones.
+                    </p>
                 </div>
             </div>
         </section>

@@ -88649,7 +88649,8 @@ var render = function() {
                                 attrs: {
                                   type: "text",
                                   id: "name",
-                                  placeholder: "Nombre"
+                                  placeholder: "Nombre",
+                                  required: ""
                                 },
                                 domProps: { value: _vm.user.name },
                                 on: {
@@ -88690,7 +88691,8 @@ var render = function() {
                                 attrs: {
                                   type: "text",
                                   id: "email",
-                                  placeholder: "Correo"
+                                  placeholder: "Correo",
+                                  required: ""
                                 },
                                 domProps: { value: _vm.user.email },
                                 on: {

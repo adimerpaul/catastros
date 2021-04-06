@@ -22,7 +22,7 @@
        
         <a href="{{ url('/') }}" class="text-sm text-gray-700 underline">Home</a>
         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
-        <a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a>
+        <!--a href="{{ route('register') }}" class="text-sm text-gray-700 underline">Register</a-->
         
     </nav>
     <section class="textos-header">
